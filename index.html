@@ -943,14 +943,13 @@
   }
   .persona-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
   .persona-avatar {
-    width: 44px; height: 44px;
+    width: 48px; height: 48px;
     border-radius: 10px;
     background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
-    display: grid; place-items: center;
-    font-weight: 700;
-    font-size: 16px;
-    color: #ffffff;
+    overflow: hidden;
+    flex-shrink: 0;
   }
+  .persona-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .persona-name { font-size: 14px; font-weight: 600; }
   .persona-role { font-size: 11px; color: var(--text-mute); }
   .persona-attr {
@@ -1231,7 +1230,7 @@ const PAGES = {
   tam: {
     crumb: ['Week 0', 'Foundation', 'TAM Mapping'],
     title: 'TAM Mapping',
-    desc: 'Quantify the total, serviceable, and obtainable market — then identify the highest-fit ICP segment for outbound to penetrate first.',
+    desc: 'Size the market. Find the highest-fit ICP segment to attack first.',
     pill: 'Phase 01 / Foundation',
     pillColor: 'var(--accent)',
     render: () => `
@@ -1245,7 +1244,7 @@ const PAGES = {
       <div class="grid grid-2 fade-in d1">
         <div class="card">
           <h3 style="font-size:15px; margin-bottom:4px;">Market Funnel</h3>
-          <p style="color:var(--text-mute); font-size:12px; margin-bottom:24px;">Concentric mapping from TAM → ICP shows what proportion of the universe we actually pursue first.</p>
+          <p style="color:var(--text-mute); font-size:12px; margin-bottom:24px;">TAM → ICP. The slice we actually pursue first.</p>
           <div class="tam-viz">
             <div class="tam-circle tam"></div>
             <div class="tam-circle sam"></div>
@@ -1264,7 +1263,7 @@ const PAGES = {
 
         <div class="card">
           <h3 style="font-size:15px; margin-bottom:4px;">Segment Breakdown</h3>
-          <p style="color:var(--text-mute); font-size:12px; margin-bottom:18px;">Vertical concentration within SOM. We sequence outbound by signal density.</p>
+          <p style="color:var(--text-mute); font-size:12px; margin-bottom:18px;">Vertical mix within SOM — sequenced by signal density.</p>
           <div style="display:flex; flex-direction:column; gap:12px;">
             ${[
               ['B2B SaaS — Series A/B', 38, 1238],
@@ -1287,7 +1286,7 @@ const PAGES = {
 
       <div class="info-strip fade-in d2" style="margin-top:24px;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        <div><strong>Method:</strong> TAM mapping sources from licensing data, BuiltWith / job-posting density, and revenue-band filters. We anchor each segment to a tangible <em>buying signal</em> before activation.</div>
+        <div><strong>Method:</strong> Every segment is anchored to a tangible <em>buying signal</em> before we activate.</div>
       </div>
     `
   },
@@ -1295,7 +1294,7 @@ const PAGES = {
   icp: {
     crumb: ['Week 0', 'Foundation', 'ICP & List Building'],
     title: 'ICP Definition & List Building',
-    desc: 'Translate market data into a precise ideal customer profile, qualify against a structured scoring matrix, and source enriched leads through our AptAI Lead Gen Pipeline.',
+    desc: 'Define ICP, score every account, and source enriched leads ready for campaigns.',
     pill: 'Phase 02 / Foundation',
     subtabs: [
       { id: 'persona', label: 'Identify Target Market & Define ICP' },
@@ -1307,17 +1306,17 @@ const PAGES = {
       persona: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-          <div><strong>3 anchor personas</strong> built from interviews, won-deal patterns, and disqualification data. Each persona defines firmographic, technographic, and trigger criteria.</div>
+          <div><strong>3 anchor personas</strong> — built from won-deal patterns and disqualification data.</div>
         </div>
         <div class="grid grid-3 fade-in d1">
           ${[
-            { i:'RM', n:'Revenue / GTM Lead', r:'VP Sales · Head of GTM', co:'B2B SaaS · 50–200 FTE', rev:'$5M–$25M ARR', stack:'HubSpot, Apollo, Clay', trig:'New funding · Hiring SDRs', pain:'Pipeline stalled, top-of-funnel weak' },
-            { i:'MO', n:'Marketing Operator', r:'Head of Demand Gen', co:'B2B SaaS · 25–100 FTE', rev:'$2M–$15M ARR', stack:'Marketo, 6sense, ZoomInfo', trig:'New CMO · MQL target raised', pain:'Inbound plateau, paid CAC rising' },
-            { i:'AG', n:'Agency Operator', r:'Founder · MD', co:'Agency · 10–80 FTE', rev:'$500K–$10M', stack:'Instantly, Smartlead, Clay', trig:'New service line · Client churn', pain:'Need predictable new-logo flow' }
+            { img:'https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/ChatGPT+CRO', n:'Revenue / GTM Lead', r:'VP Sales · Head of GTM', co:'B2B SaaS · 50–200 FTE', rev:'$5M–$25M ARR', stack:'HubSpot, Apollo, Outreach', trig:'New funding · Hiring SDRs', pain:'Pipeline stalled, top-of-funnel weak' },
+            { img:'https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/ChatGPT+CMO', n:'Marketing Operator', r:'Head of Demand Gen', co:'B2B SaaS · 25–100 FTE', rev:'$2M–$15M ARR', stack:'Marketo, 6sense, ZoomInfo', trig:'New CMO · MQL target raised', pain:'Inbound plateau, paid CAC rising' },
+            { img:'https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/ChatGPT+Agency+Operator', n:'Agency Operator', r:'Founder · MD', co:'Agency · 10–80 FTE', rev:'$500K–$10M', stack:'Instantly, Smartlead, Lemlist', trig:'New service line · Client churn', pain:'Need predictable new-logo flow' }
           ].map(p => `
             <div class="persona-card">
               <div class="persona-head">
-                <div class="persona-avatar">${p.i}</div>
+                <div class="persona-avatar"><img src="${p.img}" alt="${p.n}" /></div>
                 <div>
                   <div class="persona-name">${p.n}</div>
                   <div class="persona-role">${p.r}</div>
@@ -1335,7 +1334,7 @@ const PAGES = {
       qual: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          <div><strong>Qualification matrix</strong> — every account is scored against firmographic, technographic, intent, and signal dimensions. Score &lt; 60 is auto-disqualified.</div>
+          <div><strong>Every account scored</strong> on fit + intent. Score &lt; 60 is auto-disqualified.</div>
         </div>
         <div class="matrix fade-in d1">
           <div class="matrix-cell h">Criterion</div>
@@ -1368,19 +1367,19 @@ const PAGES = {
       pipeline: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/><path d="M8 8h.01M8 18h.01"/></svg>
-          <div><strong>AptAI Lead Gen Pipeline</strong> — proprietary multi-source orchestration. Sales Nav + Apollo + custom scrapes feed into Clay for enrichment, then through our AI scoring agent.</div>
+          <div><strong>AptAI Lead Gen Pipeline</strong> — orchestrated end-to-end in Deep Line. Sources flow through a waterfall enrichment stack, then our AI scoring agent.</div>
         </div>
         <div class="pipeline fade-in d1">
           <div class="pipe-stage">
             <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
             <h4>Source</h4>
-            <p>Sales Nav, Apollo, BuiltWith, custom intent scrapes</p>
+            <p>AI Arc, Sales Nav, Apollo, custom intent signals</p>
           </div>
           <div class="pipe-arrow">→</div>
           <div class="pipe-stage">
             <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="3.27" y1="6.96" x2="12" y2="12.01"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-            <h4>Enrich (Clay)</h4>
-            <p>Verified email, phone, tech, headcount, fund-raise, role</p>
+            <h4>Enrich (Waterfall)</h4>
+            <p>Blitz API + FindEmail + waterfall providers — email, phone, tech, funding</p>
           </div>
           <div class="pipe-arrow">→</div>
           <div class="pipe-stage">
@@ -1406,7 +1405,7 @@ const PAGES = {
       tiers: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <div><strong>Signal-based tier system</strong> — each lead is bucketed by intent strength. T1 gets manual senior touch; T2/T3 ride automated sequences with adjusted cadence and copy depth.</div>
+          <div><strong>Signal-based tiers.</strong> T1 gets manual senior touch; T2/T3 ride automated sequences.</div>
         </div>
         <div class="grid grid-3 fade-in d1">
           <div class="tier-card t1">
@@ -1450,7 +1449,7 @@ const PAGES = {
   infra: {
     crumb: ['Week 0', 'Foundation', 'Outbound Infrastructure'],
     title: 'Outbound Infrastructure Build',
-    desc: 'Operationalize the sending stack. Domains, deliverability, AI personalization, the platform layer, and the reply engine — all live before a single campaign launches.',
+    desc: 'The sending stack — domains, AI personalization, and reply engine — live before launch.',
     pill: 'Phase 03 / Foundation',
     subtabs: [
       { id: 'domains', label: 'Email / Domain Setup' },
@@ -1501,13 +1500,13 @@ const PAGES = {
 
         <div class="info-strip fade-in d2" style="margin-top:24px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <div><strong>Sender architecture</strong> — 3 redundant stacks isolate risk. SMTP (5 × 49 mailboxes) carries primary volume; Google Workspace (30 × 5) handles high-trust outreach; Microsoft is reserve for warmup and rotation.</div>
+          <div><strong>3 redundant sender stacks.</strong> SMTP carries volume, Google handles high-trust, Microsoft is reserve.</div>
         </div>
       `,
       ai: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          <div><strong>AI automation layer</strong> handles the work that breaks at scale: list cleaning, role inference, deep personalization, and per-prospect copy generation against your offer.</div>
+          <div><strong>AI automation</strong> handles what breaks at scale — cleaning, personalization, and per-prospect copy.</div>
         </div>
         <div class="ai-flow fade-in d1">
           <div class="flow-step">
@@ -1556,7 +1555,7 @@ const PAGES = {
       platform: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          <div><strong>Platform stack</strong> — Instantly orchestrates sending and inbox routing. CRM (HubSpot or your CRM) is bi-directionally synced for unified pipeline visibility.</div>
+          <div><strong>Instantly handles sending.</strong> Your CRM stays in sync both ways.</div>
         </div>
         <div class="integrations fade-in d1">
           <div class="integration">
@@ -1576,18 +1575,18 @@ const PAGES = {
             <span class="int-status">Connected</span>
           </div>
           <div class="integration">
-            <div class="int-logo" style="background:#a78bfa">C</div>
+            <div class="int-logo" style="background:#a78bfa">B</div>
             <div>
-              <div class="int-name">Clay</div>
-              <div class="int-meta">Enrichment · scoring</div>
+              <div class="int-name">Blitz API</div>
+              <div class="int-meta">Enrichment waterfall</div>
             </div>
             <span class="int-status">Connected</span>
           </div>
           <div class="integration">
-            <div class="int-logo" style="background:#2dd4bf">A</div>
+            <div class="int-logo" style="background:#2dd4bf">D</div>
             <div>
-              <div class="int-name">AptAI Pipeline</div>
-              <div class="int-meta">Lead gen · orchestration</div>
+              <div class="int-name">Deep Line</div>
+              <div class="int-meta">GTM orchestration</div>
             </div>
             <span class="int-status">Connected</span>
           </div>
@@ -1652,7 +1651,7 @@ const PAGES = {
       reply: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <div><strong>AI reply engine</strong> reads every inbound reply, classifies intent, and either responds (booking, objection-handling, OOO) or routes to a human. No reply sits in an inbox.</div>
+          <div><strong>Every inbound reply</strong> is classified and routed. Nothing sits in an inbox.</div>
         </div>
 
         <h3 style="font-size:13px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:12px;">Last 7 Days — 312 Replies Classified</h3>
@@ -1727,7 +1726,7 @@ const PAGES = {
   launch: {
     crumb: ['Week 2', 'Activation', 'Launch Campaigns'],
     title: 'Launch Campaigns',
-    desc: 'Pre-flight deliverability, coordinated campaign waves, and a week-long volume ramp to peak send rate — without burning domain reputation.',
+    desc: 'Pre-flight checks, coordinated waves, and a 7-day volume ramp to peak send.',
     pill: 'Phase 04 / Activation',
     pillColor: 'var(--accent-2)',
     subtabs: [
@@ -1739,7 +1738,7 @@ const PAGES = {
       prelaunch: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          <div><strong>Pre-flight check</strong> — every campaign passes a 12-point inspection before a single send. Inbox placement, spam-trigger words, DNS posture, throttle config, sender rotation.</div>
+          <div><strong>12-point pre-flight</strong> before a single send.</div>
         </div>
 
         <div class="checklist fade-in d1">
@@ -1768,7 +1767,7 @@ const PAGES = {
       coord: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <div><strong>Coordinated cadence</strong> — campaign waves staggered to avoid sender overload, with internal review gates baked into the calendar.</div>
+          <div><strong>Waves staggered</strong> to protect senders, with review gates baked in.</div>
         </div>
 
         <div class="calendar fade-in d1">
@@ -1830,7 +1829,7 @@ const PAGES = {
       rampup: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-          <div><strong>Week-long ramp</strong> — we don't slam mailboxes at max volume on day one. Daily send caps step up from 5/mailbox to 35/mailbox over 7 days while we monitor reply and bounce telemetry.</div>
+          <div><strong>7-day ramp.</strong> Caps step up from 5 to 35/mailbox while we watch bounce and reply rates.</div>
         </div>
 
         <div class="card chart-card fade-in d1">
@@ -1865,7 +1864,7 @@ const PAGES = {
   analytics: {
     crumb: ['Week 4+', 'Optimization', 'Outbound Analytics'],
     title: 'Outbound Analytics & Iteration',
-    desc: 'Live oversight, weekly performance reporting, and structured iteration. The engine compounds — every cohort gets sharper than the last.',
+    desc: 'Live oversight, weekly reports, and iteration that compounds week over week.',
     pill: 'Phase 05 / Optimization',
     pillColor: 'var(--accent-3)',
     subtabs: [
@@ -1950,7 +1949,7 @@ const PAGES = {
       reports: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <div><strong>Weekly performance report</strong> — every Monday. Shipped as a branded PDF + Loom walkthrough. Covers send health, reply quality, pipeline impact, and next-week priorities.</div>
+          <div><strong>Weekly report</strong> every Monday — branded PDF + Loom on send health, replies, and pipeline.</div>
         </div>
 
         <div class="report-mock fade-in d1">
@@ -2014,7 +2013,7 @@ const PAGES = {
       iterate: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15A9 9 0 0 1 5.64 18.36L1 14"/></svg>
-          <div><strong>Continuous iteration loop</strong> — subject lines, openers, offers, and cadence are tested in parallel. Winners auto-promote into the next cohort.</div>
+          <div><strong>Subjects, openers, and cadence</strong> tested in parallel. Winners auto-promote.</div>
         </div>
 
         <div class="grid grid-2 fade-in d1">
@@ -2097,7 +2096,7 @@ const PAGES = {
 
         <div class="info-strip fade-in d2" style="margin-top:24px; background: linear-gradient(90deg, rgba(110,106,99,0.06), transparent); border-color: rgba(110,106,99,0.15);">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent-3);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <div><strong>Compounding effect</strong> — by week 8, reply rates typically land 40–60% above week-2 baseline. The iteration loop is what turns this from a campaign into an engine.</div>
+          <div><strong>Compounding effect</strong> — by week 8, reply rates land 40–60% above the week-2 baseline.</div>
         </div>
       `
     }
@@ -2151,7 +2150,7 @@ function render() {
   html += `
     <div class="footer-note">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      <div>This is a live operating view of AptAI's cold outbound engine — the same dashboard your team would see during engagement. Click any sub-section above or any of the 5 phases on the left rail to keep walking through.</div>
+      <div>Live view of the AptAI cold outbound engine. Click any phase on the left to keep walking through.</div>
     </div>
   `;
 
