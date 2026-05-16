@@ -454,17 +454,35 @@
 
   /* ============ PIPELINE ============ */
   .pipeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .pipe-row {
     display: grid;
     grid-template-columns: 1fr auto 1fr auto 1fr;
     gap: 16px;
     align-items: center;
-    margin: 16px 0;
+    width: 100%;
   }
   .pipe-arrow {
     color: var(--text-dim);
     font-size: 22px;
     text-align: center;
     animation: pulse-arrow 2s ease-in-out infinite;
+  }
+  .pipe-arrow-down {
+    color: var(--text-dim);
+    font-size: 22px;
+    animation: pulse-arrow 2s ease-in-out infinite;
+  }
+  .pipe-final {
+    max-width: 320px;
+    width: 100%;
+    background: rgba(0,207,192,0.06);
+    border-color: rgba(0,207,192,0.2);
   }
   .pipe-stage {
     background: var(--surface-3);
@@ -1370,26 +1388,28 @@ const PAGES = {
           <div><strong>AptAI Lead Gen Pipeline</strong> — orchestrated end-to-end in Deep Line. Sources flow through a waterfall enrichment stack, then our AI scoring agent.</div>
         </div>
         <div class="pipeline fade-in d1">
-          <div class="pipe-stage">
-            <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-            <h4>Source</h4>
-            <p>AI Arc, Sales Nav, Apollo, custom intent signals</p>
+          <div class="pipe-row">
+            <div class="pipe-stage">
+              <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <h4>Source</h4>
+              <p>AI Arc, Sales Nav, Apollo, custom intent signals</p>
+            </div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-stage">
+              <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="3.27" y1="6.96" x2="12" y2="12.01"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+              <h4>Enrich (Waterfall)</h4>
+              <p>Blitz API + FindEmail + waterfall providers — email, phone, tech, funding</p>
+            </div>
+            <div class="pipe-arrow">→</div>
+            <div class="pipe-stage">
+              <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+              <h4>AI Score + Dedupe</h4>
+              <p>Fit + intent scoring, blacklist scrub, role-mapping</p>
+            </div>
           </div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-stage">
-            <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="3.27" y1="6.96" x2="12" y2="12.01"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-            <h4>Enrich (Waterfall)</h4>
-            <p>Blitz API + FindEmail + waterfall providers — email, phone, tech, funding</p>
-          </div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-stage">
-            <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-            <h4>AI Score + Dedupe</h4>
-            <p>Fit + intent scoring, blacklist scrub, role-mapping</p>
-          </div>
-          <div class="pipe-arrow">→</div>
-          <div class="pipe-stage">
-            <div class="pipe-stage-icon" style="background:rgba(0,207,192,0.1); color: var(--success-dark);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 4 12 14.01 9 11.01"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="pipe-arrow-down">↓</div>
+          <div class="pipe-stage pipe-final">
+            <div class="pipe-stage-icon" style="background:rgba(0,207,192,0.15); color: var(--success-dark);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 4 12 14.01 9 11.01"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
             <h4>Campaign-Ready</h4>
             <p>Tiered, segmented, personalization-snippets attached</p>
           </div>
