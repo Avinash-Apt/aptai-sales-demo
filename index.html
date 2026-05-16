@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AptAI — Cold Outbound Sales Demo</title>
+<link rel="icon" href="https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/Logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* AptAI brand · cream + teal */
+    --bg: #FFFCF0;
+    --bg-alt: #F5F0DF;
+    --bg-grad: radial-gradient(1200px 800px at 80% -10%, rgba(0,207,192,0.08), transparent 60%),
+               radial-gradient(900px 700px at 0% 100%, rgba(4,86,96,0.04), transparent 60%),
+               #FFFCF0;
+    --surface: #FFFFFF;
+    --surface-2: #FFFFFF;
+    --surface-3: #F5F0DF;
+    --border: #E8E2CE;
+    --border-strong: #C8C2AA;
+    --text: #252422;
+    --text-mute: #6E6A63;
+    --text-dim: #9A9288;
+    --accent: #00CFC0;
+    --accent-dark: #045660;
+    --accent-light: #DCFAF8;
+    --accent-2: #045660;
+    --accent-3: #6E6A63;
+    --success: #00CFC0;
+    --success-dark: #045660;
+    --warn: #B45309;
+    --danger: #B53B2C;
+    --danger-light: #FDF0EE;
+    --shadow: 0 20px 40px -20px rgba(37,36,34,0.18);
+    /* on-accent text — constant, never flips */
+    --on-accent: #FFFFFF;
+    --on-accent-dark: #FFFCF0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-grad);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(37,36,34,0.14); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(37,36,34,0.28); }
+
+  /* ============ LAYOUT ============ */
+  .app {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 60px 1fr;
+    height: 100vh;
+  }
+  .topbar {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,252,240,0.85);
+    backdrop-filter: blur(12px);
+    z-index: 50;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-logo {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: grid; place-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,207,192,0.25);
+  }
+  .brand-logo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .brand-name {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  .brand-sub {
+    font-size: 11px;
+    color: var(--text-mute);
+    margin-top: 1px;
+    font-weight: 500;
+  }
+  .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .top-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 12px;
+  }
+  .top-stat .dot {
+    width: 6px; height: 6px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--success);
+    animation: pulse 2s infinite;
+  }
+  .top-stat-label { color: var(--text-mute); }
+  .top-stat-val { font-weight: 600; color: var(--text); }
+  .avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a78bfa, #f472b6);
+    display: grid; place-items: center;
+    font-weight: 700;
+    font-size: 12px;
+    color: #fff;
+  }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 24px 16px;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin: 0 8px 12px;
+  }
+  .phase-group {
+    margin-bottom: 28px;
+  }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    margin-bottom: 10px;
+  }
+  .phase-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    background: rgba(0,207,192,0.1);
+    color: var(--accent-dark);
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+  .phase-title {
+    font-size: 11px;
+    color: var(--text-mute);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .timeline {
+    position: relative;
+    margin-left: 16px;
+    padding-left: 20px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px; top: 14px; bottom: 14px;
+    width: 1.5px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+    opacity: 0.4;
+  }
+  .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    margin-left: -12px;
+    margin-bottom: 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-mute);
+    font-weight: 500;
+    border: 1px solid transparent;
+  }
+  .nav-item::before {
+    content: '';
+    position: absolute;
+    left: -19px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--surface-3);
+    border: 2px solid var(--border-strong);
+    transition: all 0.3s ease;
+  }
+  .nav-item:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+  .nav-item.active {
+    color: var(--text);
+    background: linear-gradient(90deg, rgba(0,207,192,0.12), rgba(0,207,192,0.02));
+    border-color: rgba(0,207,192,0.2);
+  }
+  .nav-item.active::before {
+    background: var(--accent);
+    border-color: var(--accent-dark);
+    box-shadow: 0 0 12px rgba(0,207,192,0.6);
+  }
+  .nav-item.completed::before {
+    background: var(--accent);
+    border-color: var(--accent-dark);
+  }
+  .nav-icon {
+    width: 16px; height: 16px;
+    color: currentColor;
+    flex-shrink: 0;
+  }
+  .nav-text { font-size: 13px; flex: 1; }
+  .nav-meta {
+    font-size: 10px;
+    color: var(--text-dim);
+    background: var(--surface-3);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* ============ MAIN ============ */
+  .main {
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--bg-grad);
+  }
+  .main-inner {
+    padding: 32px 40px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .crumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: var(--text-mute);
+  }
+  .crumb-sep { color: var(--text-dim); }
+  .crumb .accent-text { color: var(--accent-dark); font-weight: 600; }
+
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  h1.page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+    color: var(--text);
+    line-height: 1.15;
+  }
+  .page-desc {
+    color: var(--text-mute);
+    font-size: 14px;
+    max-width: 600px;
+  }
+  .page-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-mute);
+    margin-bottom: 12px;
+  }
+  .page-pill .dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--accent);
+  }
+
+  /* ============ SUBTABS ============ */
+  .subtabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+    padding: 4px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow-x: auto;
+    width: fit-content;
+    max-width: 100%;
+  }
+  .subtab {
+    padding: 8px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-mute);
+    white-space: nowrap;
+    transition: all 0.18s ease;
+    border: 1px solid transparent;
+  }
+  .subtab:hover { color: var(--text); }
+  .subtab.active {
+    background: var(--surface-3);
+    color: var(--text);
+    border-color: var(--border-strong);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+  }
+
+  /* ============ CARDS / GRID ============ */
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 900px) {
+    .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  .card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  }
+  .card.hoverable { cursor: pointer; }
+  .card.hoverable:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    box-shadow: 0 12px 32px -16px rgba(15,23,42,0.18);
+  }
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    display: grid; place-items: center;
+    background: rgba(0,207,192,0.1);
+    color: var(--accent-dark);
+    margin-bottom: 12px;
+  }
+  .card-icon svg { width: 18px; height: 18px; }
+  .card-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .card-desc { font-size: 12px; color: var(--text-mute); }
+  .card-tag {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+    background: rgba(0,207,192,0.1);
+    color: var(--success-dark);
+    border: 1px solid rgba(0,207,192,0.2);
+  }
+  .stat {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-label { font-size: 11px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .stat-trend { font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+  .stat-trend.up { color: var(--success-dark); }
+  .stat-trend.down { color: var(--danger); }
+
+  /* ============ TAM VISUALIZATION ============ */
+  .tam-viz {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .tam-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid;
+    display: grid;
+    place-items: center;
+    transition: all 0.3s ease;
+  }
+  .tam-circle:hover { transform: scale(1.02); }
+  .tam-circle.tam {
+    inset: 0;
+    border-color: rgba(0,207,192,0.3);
+    background: radial-gradient(circle, rgba(0,207,192,0.06), transparent 70%);
+  }
+  .tam-circle.sam {
+    inset: 15%;
+    border-color: rgba(4,86,96,0.4);
+    background: radial-gradient(circle, rgba(4,86,96,0.08), transparent 70%);
+  }
+  .tam-circle.som {
+    inset: 32%;
+    border-color: rgba(110,106,99,0.5);
+    background: radial-gradient(circle, rgba(110,106,99,0.12), transparent 60%);
+  }
+  .tam-circle.icp {
+    inset: 50%;
+    border-color: var(--accent-dark);
+    background: radial-gradient(circle, rgba(0,207,192,0.25), rgba(0,207,192,0.05));
+    box-shadow: 0 0 40px rgba(0,207,192,0.3);
+  }
+  .tam-label {
+    position: absolute;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--surface-2);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-strong);
+    white-space: nowrap;
+  }
+  .tam-label small { display: block; color: var(--text-mute); font-weight: 400; font-size: 9px; margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+
+  /* ============ PIPELINE ============ */
+  .pipeline {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 16px;
+    align-items: center;
+    margin: 16px 0;
+  }
+  .pipe-arrow {
+    color: var(--text-dim);
+    font-size: 22px;
+    text-align: center;
+    animation: pulse-arrow 2s ease-in-out infinite;
+  }
+  .pipe-stage {
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .pipe-stage-icon {
+    width: 40px; height: 40px;
+    margin: 0 auto 8px;
+    border-radius: 10px;
+    background: rgba(0,207,192,0.1);
+    display: grid; place-items: center;
+    color: var(--accent-dark);
+  }
+  .pipe-stage h4 { font-size: 13px; margin-bottom: 4px; }
+  .pipe-stage p { font-size: 11px; color: var(--text-mute); }
+
+  /* ============ TIER CARDS ============ */
+  .tier-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  }
+  .tier-card.t1 { border-color: rgba(0,207,192,0.35); background: linear-gradient(180deg, rgba(0,207,192,0.06), #ffffff); }
+  .tier-card.t2 { border-color: rgba(4,86,96,0.25); background: linear-gradient(180deg, rgba(4,86,96,0.05), #ffffff); }
+  .tier-card.t3 { border-color: rgba(110,106,99,0.22); background: linear-gradient(180deg, rgba(110,106,99,0.05), #ffffff); }
+  .tier-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .tier-card.t1 .tier-badge { background: rgba(0,207,192,0.15); color: var(--accent-dark); }
+  .tier-card.t2 .tier-badge { background: rgba(4,86,96,0.15); color: var(--accent-2); }
+  .tier-card.t3 .tier-badge { background: rgba(110,106,99,0.15); color: var(--accent-3); }
+  .tier-stat {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 4px;
+  }
+  .tier-signals { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .tier-signal {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-mute);
+  }
+  .tier-signal::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-dim);
+  }
+  .tier-card.t1 .tier-signal::before { background: var(--accent); }
+  .tier-card.t2 .tier-signal::before { background: var(--accent-2); }
+  .tier-card.t3 .tier-signal::before { background: var(--accent-3); }
+
+  /* ============ DOMAIN GRID ============ */
+  .domain-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 80px 80px 80px 90px 80px;
+    gap: 12px;
+    padding: 12px 16px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .domain-row.header {
+    background: var(--surface);
+    color: var(--text-mute);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-strong);
+  }
+  .domain-name { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+  .domain-name .favicon {
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: grid; place-items: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: #252422;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .badge.green { background: rgba(0,207,192,0.12); color: var(--accent-dark); }
+  .badge.yellow { background: rgba(180,83,9,0.12); color: var(--warn); }
+  .badge.red { background: rgba(181,59,44,0.12); color: var(--danger); }
+  .badge.blue { background: rgba(4,86,96,0.12); color: var(--accent-dark); }
+  .health-bar {
+    height: 5px;
+    background: var(--surface-3);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  .health-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 999px;
+    transition: width 1s ease;
+  }
+
+  /* ============ CHECKLIST ============ */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+  .check-item:hover { border-color: var(--border-strong); }
+  .check-box {
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--border-strong);
+    display: grid; place-items: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: all 0.2s ease;
+  }
+  .check-item.done .check-box {
+    background: var(--accent);
+    border-color: var(--accent-dark);
+  }
+  .check-item.done .check-box::after {
+    content: '✓';
+    color: #252422;
+    font-weight: 800;
+    font-size: 12px;
+  }
+  .check-item.done .check-text { color: var(--text-mute); }
+  .check-text { font-size: 13px; flex: 1; }
+  .check-text small { display: block; color: var(--text-dim); font-size: 11px; margin-top: 2px; }
+  .check-status {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  /* ============ CHART ============ */
+  .chart-card { padding: 24px; }
+  .chart-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .chart-sub { font-size: 12px; color: var(--text-mute); margin-bottom: 20px; }
+  .chart {
+    height: 220px;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 0 4px;
+    position: relative;
+  }
+  .chart-grid {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+  .chart-grid-line {
+    border-top: 1px dashed rgba(15,23,42,0.06);
+  }
+  .chart-bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    opacity: 0.95;
+    transition: all 0.5s ease;
+    min-height: 4px;
+    cursor: pointer;
+  }
+  .chart-bar:hover { opacity: 1; transform: translateY(-2px); }
+  .chart-bar .label {
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .chart-bar .value {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--text);
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .chart-bar:hover .value { opacity: 1; }
+
+  /* ============ FLOW ============ */
+  .ai-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    align-items: stretch;
+  }
+  .flow-step {
+    position: relative;
+    padding: 18px 16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-right: 0;
+  }
+  .flow-step:first-child { border-radius: 10px 0 0 10px; }
+  .flow-step:last-child { border-radius: 0 10px 10px 0; border-right: 1px solid var(--border); }
+  .flow-step::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%) rotate(45deg);
+    width: 14px; height: 14px;
+    background: var(--surface-2);
+    border-top: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    z-index: 2;
+  }
+  .flow-step:last-child::after { display: none; }
+  .flow-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent-dark);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .flow-step h4 { font-size: 13px; margin-bottom: 4px; }
+  .flow-step p { font-size: 11px; color: var(--text-mute); }
+  @media (max-width: 900px) {
+    .ai-flow { grid-template-columns: 1fr; }
+    .flow-step { border-right: 1px solid var(--border); border-bottom: 0; }
+    .flow-step:not(:last-child) { border-bottom: 0; }
+    .flow-step:first-child { border-radius: 10px 10px 0 0; }
+    .flow-step:last-child { border-radius: 0 0 10px 10px; border-bottom: 1px solid var(--border); }
+    .flow-step::after { display: none; }
+  }
+
+  /* ============ REPLY CLASSIFIER ============ */
+  .classifier {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+  .class-bucket {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .class-bucket.interested { border-color: rgba(0,207,192,0.3); background: linear-gradient(180deg, rgba(0,207,192,0.08), #ffffff); }
+  .class-bucket.question { border-color: rgba(4,86,96,0.28); background: linear-gradient(180deg, rgba(4,86,96,0.06), #ffffff); }
+  .class-bucket.oof { border-color: rgba(180,83,9,0.28); background: linear-gradient(180deg, rgba(180,83,9,0.06), #ffffff); }
+  .class-bucket.objection { border-color: rgba(181,59,44,0.25); background: linear-gradient(180deg, rgba(181,59,44,0.05), #ffffff); }
+  .class-bucket.unsub { border-color: rgba(100,116,139,0.22); }
+  .class-count {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 4px 0;
+  }
+  .class-label {
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+  }
+
+  /* ============ INTEGRATIONS ============ */
+  .integrations {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .integration {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .int-logo {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-weight: 800;
+    font-size: 14px;
+    color: #fff;
+  }
+  .int-meta { font-size: 11px; color: var(--text-mute); }
+  .int-name { font-size: 13px; font-weight: 600; }
+  .int-status {
+    margin-left: auto;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(0,207,192,0.12);
+    color: var(--success-dark);
+    font-weight: 600;
+  }
+
+  /* ============ REPORT MOCK ============ */
+  .report-mock {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .report-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .report-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .report-stat {
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .report-stat .label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; }
+  .report-stat .value { font-size: 20px; font-weight: 700; margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  @keyframes pulse-arrow {
+    0%, 100% { transform: translateX(0); opacity: 0.6; }
+    50% { transform: translateX(2px); opacity: 1; }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { animation: fadeIn 0.4s ease-out both; }
+  .fade-in.d1 { animation-delay: 0.04s; }
+  .fade-in.d2 { animation-delay: 0.08s; }
+  .fade-in.d3 { animation-delay: 0.12s; }
+  .fade-in.d4 { animation-delay: 0.16s; }
+
+  /* ============ VOLUME BAR (top) ============ */
+  .volume-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface-2);
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 12px;
+  }
+  .vol-bar {
+    width: 80px; height: 4px;
+    background: var(--surface-3);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  .vol-bar-fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    width: 70%;
+  }
+
+  /* ============ CTA ============ */
+  .btn {
+    padding: 8px 14px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-2);
+    color: var(--text);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+  .btn:hover { background: var(--surface-3); }
+  .btn.primary {
+    background: var(--accent-dark);
+    color: var(--on-accent-dark);
+    border-color: transparent;
+    font-weight: 600;
+  }
+  .btn.primary:hover { transform: translateY(-1px); background: #023e45; box-shadow: 0 8px 20px -8px rgba(4,86,96,0.4); }
+
+  /* ============ KPI HEADER ============ */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 900px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+  .kpi {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+  .kpi.b2::before { background: var(--accent-2); }
+  .kpi.b3::before { background: var(--accent-3); }
+  .kpi.b4::before { background: var(--success); }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .kpi-val {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .kpi-foot { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+
+  /* ============ ICP PERSONAS ============ */
+  .persona-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .persona-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .persona-avatar {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+    display: grid; place-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+  }
+  .persona-name { font-size: 14px; font-weight: 600; }
+  .persona-role { font-size: 11px; color: var(--text-mute); }
+  .persona-attr {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .persona-attr:last-child { border-bottom: 0; }
+  .persona-attr-label { color: var(--text-mute); }
+  .persona-attr-val { color: var(--text); font-weight: 500; }
+
+  /* ============ MATRIX ============ */
+  .matrix {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(4, 1fr);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .matrix-cell {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .matrix-cell.h { background: var(--surface); color: var(--text-mute); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .matrix-cell.label { font-weight: 500; }
+  .matrix-cell:last-child { border-right: 0; }
+  .matrix-cell.tick { color: var(--success-dark); text-align: center; font-weight: 700; }
+  .matrix-cell.x { color: var(--text-dim); text-align: center; }
+
+  /* ============ INFO STRIP ============ */
+  .info-strip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, rgba(0,207,192,0.06), transparent);
+    border: 1px solid rgba(0,207,192,0.15);
+    border-radius: 10px;
+    margin-bottom: 24px;
+    font-size: 12px;
+    color: var(--text-mute);
+  }
+  .info-strip strong { color: var(--text); font-weight: 600; }
+  .info-strip svg { color: var(--accent-dark); flex-shrink: 0; }
+
+  /* ============ CALENDAR ============ */
+  .calendar {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .cal-head {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 6px 0;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .cal-day {
+    aspect-ratio: 1.4;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-mute);
+    position: relative;
+  }
+  .cal-day.active {
+    background: linear-gradient(135deg, rgba(0,207,192,0.15), rgba(4,86,96,0.05));
+    border-color: rgba(0,207,192,0.4);
+    color: var(--text);
+  }
+  .cal-day .day-num { font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+  .cal-day .day-event {
+    font-size: 9px;
+    padding: 2px 4px;
+    background: var(--accent);
+    color: #252422;
+    border-radius: 3px;
+    margin-top: 2px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* ============ AB TEST ============ */
+  .ab-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .ab-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .ab-title { font-size: 13px; font-weight: 600; }
+  .ab-status { font-size: 10px; padding: 3px 8px; border-radius: 4px; font-weight: 600; }
+  .ab-status.live { background: rgba(0,207,192,0.15); color: var(--success-dark); }
+  .ab-status.winner { background: rgba(0,207,192,0.18); color: var(--accent-dark); }
+  .ab-variant {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  .ab-variant.win { border-color: var(--accent-dark); background: linear-gradient(180deg, rgba(0,207,192,0.08), #ffffff); }
+  .ab-variant-head { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 4px; }
+  .ab-variant-label { color: var(--text-mute); text-transform: uppercase; font-weight: 600; letter-spacing: 0.04em; }
+  .ab-variant-rate { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+  .ab-variant.win .ab-variant-rate { color: var(--accent-dark); }
+  .ab-variant-copy { font-size: 12px; color: var(--text); font-family: 'JetBrains Mono', monospace; }
+
+  /* ============ LIVE PULSE ============ */
+  .live-feed { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .feed-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .feed-item:last-child { border-bottom: 0; }
+  .feed-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .feed-dot.g { background: var(--success); box-shadow: 0 0 6px var(--success); }
+  .feed-dot.b { background: var(--accent-2); box-shadow: 0 0 6px var(--accent-2); }
+  .feed-dot.y { background: var(--warn); box-shadow: 0 0 6px var(--warn); }
+  .feed-text { flex: 1; }
+  .feed-meta { font-size: 10px; color: var(--text-dim); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+
+  /* ============ HOW TO USE FOOTER ============ */
+  .footer-note {
+    margin-top: 40px;
+    padding: 16px 20px;
+    background: var(--surface-2);
+    border: 1px dashed var(--border-strong);
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--text-mute);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo"><img src="https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/Logo.png" alt="AptAI" /></div>
+      <div>
+        <div class="brand-name">AptAI <span style="color:var(--text-dim); font-weight:500; font-size:11px; margin-left:6px;">Cold Outbound Demo</span></div>
+        <div class="brand-sub">Sales Enablement Walkthrough</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <div class="volume-display">
+        <span style="color:var(--text-mute)">VOL</span>
+        <span style="font-family:'JetBrains Mono', monospace; font-weight:600">735–1000+/day</span>
+        <div class="vol-bar"><div class="vol-bar-fill"></div></div>
+      </div>
+      <div class="top-stat">
+        <span class="dot"></span>
+        <span class="top-stat-label">Status</span>
+        <span class="top-stat-val">Operational</span>
+      </div>
+      <div class="top-stat">
+        <span class="top-stat-label">Workspace</span>
+        <span class="top-stat-val">AptAI Systems</span>
+      </div>
+      <div class="avatar">AR</div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-label">Engagement Roadmap</div>
+
+    <div class="phase-group">
+      <div class="phase-header">
+        <span class="phase-badge">Week 0</span>
+        <span class="phase-title">Foundation</span>
+      </div>
+      <nav class="timeline">
+        <div class="nav-item" data-page="tam">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="nav-text">TAM Mapping</span>
+          <span class="nav-meta">01</span>
+        </div>
+        <div class="nav-item" data-page="icp">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="nav-text">ICP & List Building</span>
+          <span class="nav-meta">02</span>
+        </div>
+        <div class="nav-item" data-page="infra">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="6" rx="1"/><rect x="2" y="15" width="20" height="6" rx="1"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          <span class="nav-text">Infrastructure</span>
+          <span class="nav-meta">03</span>
+        </div>
+      </nav>
+    </div>
+
+    <div class="phase-group">
+      <div class="phase-header">
+        <span class="phase-badge" style="background:rgba(4,86,96,0.1); color:var(--accent-2)">Week 2</span>
+        <span class="phase-title">Activation</span>
+      </div>
+      <nav class="timeline" style="--accent: var(--accent-2)">
+        <div class="nav-item" data-page="launch">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg>
+          <span class="nav-text">Launch Campaigns</span>
+          <span class="nav-meta">04</span>
+        </div>
+      </nav>
+    </div>
+
+    <div class="phase-group">
+      <div class="phase-header">
+        <span class="phase-badge" style="background:rgba(110,106,99,0.1); color:var(--accent-3)">Week 4+</span>
+        <span class="phase-title">Optimization</span>
+      </div>
+      <nav class="timeline">
+        <div class="nav-item" data-page="analytics">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span class="nav-text">Outbound Analytics</span>
+          <span class="nav-meta">05</span>
+        </div>
+      </nav>
+    </div>
+
+    <div style="margin-top:32px; padding: 14px; background: var(--surface-2); border:1px solid var(--border); border-radius: 10px;">
+      <div style="font-size: 11px; color: var(--text-mute); margin-bottom: 8px; font-weight:600; text-transform: uppercase; letter-spacing: 0.06em;">Infrastructure</div>
+      <div style="display:flex; justify-content:space-between; font-size: 12px; padding: 4px 0;">
+        <span style="color:var(--text-mute)">Senders</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600">3 stacks</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size: 12px; padding: 4px 0;">
+        <span style="color:var(--text-mute)">SMTP × Micro</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600">5 × 49</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size: 12px; padding: 4px 0;">
+        <span style="color:var(--text-mute)">Google Workspace</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600">30 × 5</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="main-inner" id="page-container"></div>
+  </main>
+</div>
+
+<script>
+// ====== PAGES ======
+const PAGES = {
+
+  tam: {
+    crumb: ['Week 0', 'Foundation', 'TAM Mapping'],
+    title: 'TAM Mapping',
+    desc: 'Quantify the total, serviceable, and obtainable market — then identify the highest-fit ICP segment for outbound to penetrate first.',
+    pill: 'Phase 01 / Foundation',
+    pillColor: 'var(--accent)',
+    render: () => `
+      <div class="kpi-row fade-in">
+        <div class="kpi"><div class="kpi-label">Total Addressable Market</div><div class="kpi-val">187,400</div><div class="kpi-foot">Global accounts in category</div></div>
+        <div class="kpi b2"><div class="kpi-label">Serviceable Market</div><div class="kpi-val">42,800</div><div class="kpi-foot">North America, 25–500 FTE</div></div>
+        <div class="kpi b3"><div class="kpi-label">Obtainable (12mo)</div><div class="kpi-val">3,250</div><div class="kpi-foot">Realistic outbound reach</div></div>
+        <div class="kpi b4"><div class="kpi-label">Best-Fit ICP Pool</div><div class="kpi-val">812</div><div class="kpi-foot">Highest intent / fit score</div></div>
+      </div>
+
+      <div class="grid grid-2 fade-in d1">
+        <div class="card">
+          <h3 style="font-size:15px; margin-bottom:4px;">Market Funnel</h3>
+          <p style="color:var(--text-mute); font-size:12px; margin-bottom:24px;">Concentric mapping from TAM → ICP shows what proportion of the universe we actually pursue first.</p>
+          <div class="tam-viz">
+            <div class="tam-circle tam"></div>
+            <div class="tam-circle sam"></div>
+            <div class="tam-circle som"></div>
+            <div class="tam-circle icp">
+              <div style="text-align:center;">
+                <div style="font-size:11px; color:var(--text-mute); font-weight:600;">ICP POOL</div>
+                <div style="font-family:'JetBrains Mono', monospace; font-weight:700; font-size:18px; color: var(--accent-dark);">812</div>
+              </div>
+            </div>
+            <div class="tam-label" style="top:4%; left:50%; transform:translateX(-50%);">TAM <small>187.4K</small></div>
+            <div class="tam-label" style="top:20%; right:4%;">SAM <small>42.8K</small></div>
+            <div class="tam-label" style="bottom:18%; left:8%;">SOM <small>3.25K</small></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:15px; margin-bottom:4px;">Segment Breakdown</h3>
+          <p style="color:var(--text-mute); font-size:12px; margin-bottom:18px;">Vertical concentration within SOM. We sequence outbound by signal density.</p>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            ${[
+              ['B2B SaaS — Series A/B', 38, 1238],
+              ['Marketing Agencies', 22, 715],
+              ['Professional Services', 18, 585],
+              ['E-commerce Platforms', 12, 390],
+              ['Fintech / Insurtech', 10, 325]
+            ].map(([n, p, c]) => `
+              <div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px;">
+                  <span>${n}</span>
+                  <span style="font-family:'JetBrains Mono', monospace; color:var(--text-mute);">${c} • ${p}%</span>
+                </div>
+                <div class="health-bar"><div class="health-bar-fill" style="width:${p*2.5}%"></div></div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+
+      <div class="info-strip fade-in d2" style="margin-top:24px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div><strong>Method:</strong> TAM mapping sources from licensing data, BuiltWith / job-posting density, and revenue-band filters. We anchor each segment to a tangible <em>buying signal</em> before activation.</div>
+      </div>
+    `
+  },
+
+  icp: {
+    crumb: ['Week 0', 'Foundation', 'ICP & List Building'],
+    title: 'ICP Definition & List Building',
+    desc: 'Translate market data into a precise ideal customer profile, qualify against a structured scoring matrix, and source enriched leads through our AptAI Lead Gen Pipeline.',
+    pill: 'Phase 02 / Foundation',
+    subtabs: [
+      { id: 'persona', label: 'Identify Target Market & Define ICP' },
+      { id: 'qual', label: 'Qualification Criteria' },
+      { id: 'pipeline', label: 'Lead Sourcing + Enrichment' },
+      { id: 'tiers', label: 'Signal-Based Tiers (T1·T2·T3)' }
+    ],
+    sub: {
+      persona: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <div><strong>3 anchor personas</strong> built from interviews, won-deal patterns, and disqualification data. Each persona defines firmographic, technographic, and trigger criteria.</div>
+        </div>
+        <div class="grid grid-3 fade-in d1">
+          ${[
+            { i:'RM', n:'Revenue / GTM Lead', r:'VP Sales · Head of GTM', co:'B2B SaaS · 50–200 FTE', rev:'$5M–$25M ARR', stack:'HubSpot, Apollo, Clay', trig:'New funding · Hiring SDRs', pain:'Pipeline stalled, top-of-funnel weak' },
+            { i:'MO', n:'Marketing Operator', r:'Head of Demand Gen', co:'B2B SaaS · 25–100 FTE', rev:'$2M–$15M ARR', stack:'Marketo, 6sense, ZoomInfo', trig:'New CMO · MQL target raised', pain:'Inbound plateau, paid CAC rising' },
+            { i:'AG', n:'Agency Operator', r:'Founder · MD', co:'Agency · 10–80 FTE', rev:'$500K–$10M', stack:'Instantly, Smartlead, Clay', trig:'New service line · Client churn', pain:'Need predictable new-logo flow' }
+          ].map(p => `
+            <div class="persona-card">
+              <div class="persona-head">
+                <div class="persona-avatar">${p.i}</div>
+                <div>
+                  <div class="persona-name">${p.n}</div>
+                  <div class="persona-role">${p.r}</div>
+                </div>
+              </div>
+              <div class="persona-attr"><span class="persona-attr-label">Company</span><span class="persona-attr-val">${p.co}</span></div>
+              <div class="persona-attr"><span class="persona-attr-label">Revenue</span><span class="persona-attr-val">${p.rev}</span></div>
+              <div class="persona-attr"><span class="persona-attr-label">Tech Stack</span><span class="persona-attr-val">${p.stack}</span></div>
+              <div class="persona-attr"><span class="persona-attr-label">Trigger</span><span class="persona-attr-val" style="color: var(--accent-dark)">${p.trig}</span></div>
+              <div class="persona-attr"><span class="persona-attr-label">Core Pain</span><span class="persona-attr-val">${p.pain}</span></div>
+            </div>
+          `).join('')}
+        </div>
+      `,
+      qual: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <div><strong>Qualification matrix</strong> — every account is scored against firmographic, technographic, intent, and signal dimensions. Score &lt; 60 is auto-disqualified.</div>
+        </div>
+        <div class="matrix fade-in d1">
+          <div class="matrix-cell h">Criterion</div>
+          <div class="matrix-cell h" style="text-align:center;">ICP-A</div>
+          <div class="matrix-cell h" style="text-align:center;">ICP-B</div>
+          <div class="matrix-cell h" style="text-align:center;">ICP-C</div>
+          <div class="matrix-cell h" style="text-align:center;">Weight</div>
+          ${[
+            ['Employee range (25–500)', 1,1,1, '15'],
+            ['Revenue ($2M–$25M ARR)', 1,1,0, '20'],
+            ['Geography (NA / EU)', 1,1,1, '10'],
+            ['Technographic match', 1,0,1, '15'],
+            ['Funding event (12mo)', 1,1,0, '10'],
+            ['Hiring signal (GTM roles)', 1,0,1, '15'],
+            ['Decision-maker reachable', 1,1,1, '15']
+          ].map(([l,a,b,c,w]) => `
+            <div class="matrix-cell label">${l}</div>
+            <div class="matrix-cell ${a?'tick':'x'}">${a?'✓':'—'}</div>
+            <div class="matrix-cell ${b?'tick':'x'}">${b?'✓':'—'}</div>
+            <div class="matrix-cell ${c?'tick':'x'}">${c?'✓':'—'}</div>
+            <div class="matrix-cell" style="text-align:center; font-family:'JetBrains Mono', monospace; color:var(--text-mute);">${w}</div>
+          `).join('')}
+          <div class="matrix-cell label" style="font-weight:700; background:var(--surface);">Composite Fit Score</div>
+          <div class="matrix-cell tick" style="background:var(--surface); font-family:'JetBrains Mono', monospace; font-weight:700;">96</div>
+          <div class="matrix-cell" style="background:var(--surface); text-align:center; font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--warn);">71</div>
+          <div class="matrix-cell" style="background:var(--surface); text-align:center; font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--accent-2);">82</div>
+          <div class="matrix-cell" style="background:var(--surface); text-align:center; font-family:'JetBrains Mono', monospace; color:var(--text-mute);">/100</div>
+        </div>
+      `,
+      pipeline: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/><path d="M8 8h.01M8 18h.01"/></svg>
+          <div><strong>AptAI Lead Gen Pipeline</strong> — proprietary multi-source orchestration. Sales Nav + Apollo + custom scrapes feed into Clay for enrichment, then through our AI scoring agent.</div>
+        </div>
+        <div class="pipeline fade-in d1">
+          <div class="pipe-stage">
+            <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <h4>Source</h4>
+            <p>Sales Nav, Apollo, BuiltWith, custom intent scrapes</p>
+          </div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-stage">
+            <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="3.27" y1="6.96" x2="12" y2="12.01"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+            <h4>Enrich (Clay)</h4>
+            <p>Verified email, phone, tech, headcount, fund-raise, role</p>
+          </div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-stage">
+            <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+            <h4>AI Score + Dedupe</h4>
+            <p>Fit + intent scoring, blacklist scrub, role-mapping</p>
+          </div>
+          <div class="pipe-arrow">→</div>
+          <div class="pipe-stage">
+            <div class="pipe-stage-icon" style="background:rgba(0,207,192,0.1); color: var(--success-dark);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 4 12 14.01 9 11.01"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h4>Campaign-Ready</h4>
+            <p>Tiered, segmented, personalization-snippets attached</p>
+          </div>
+        </div>
+
+        <div class="grid grid-4 fade-in d2" style="margin-top:24px;">
+          <div class="card"><div class="stat-label">Raw Sourced</div><div class="stat" style="color:var(--text-mute)">14,820</div><div class="stat-trend up">+12% vs prior cohort</div></div>
+          <div class="card"><div class="stat-label">Enriched</div><div class="stat" style="color:var(--accent-2)">11,206</div><div class="stat-trend up">75.6% enrichment rate</div></div>
+          <div class="card"><div class="stat-label">Scored ≥ 60</div><div class="stat" style="color: var(--accent-dark)">4,318</div><div class="stat-trend up">38.5% qualified</div></div>
+          <div class="card"><div class="stat-label">Campaign Ready</div><div class="stat" style="color: var(--success-dark)">3,950</div><div class="stat-trend up">91.5% deliverability</div></div>
+        </div>
+      `,
+      tiers: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div><strong>Signal-based tier system</strong> — each lead is bucketed by intent strength. T1 gets manual senior touch; T2/T3 ride automated sequences with adjusted cadence and copy depth.</div>
+        </div>
+        <div class="grid grid-3 fade-in d1">
+          <div class="tier-card t1">
+            <span class="tier-badge">TIER 1 · HOT</span>
+            <div class="tier-stat">412</div>
+            <div style="font-size:11px; color:var(--text-mute)">Manual SDR + executive cadence</div>
+            <div class="tier-signals">
+              <div class="tier-signal">Recent funding round (&lt;90 days)</div>
+              <div class="tier-signal">Active GTM/SDR job postings</div>
+              <div class="tier-signal">New VP Sales / CMO hire</div>
+              <div class="tier-signal">Visited high-intent pages</div>
+              <div class="tier-signal">Tech stack overlap ≥ 3 signals</div>
+            </div>
+          </div>
+          <div class="tier-card t2">
+            <span class="tier-badge">TIER 2 · WARM</span>
+            <div class="tier-stat">1,386</div>
+            <div style="font-size:11px; color:var(--text-mute)">Automated multi-touch + LinkedIn</div>
+            <div class="tier-signals">
+              <div class="tier-signal">Recent leadership change</div>
+              <div class="tier-signal">Headcount growth ≥ 10% (6mo)</div>
+              <div class="tier-signal">Competitor stack detected</div>
+              <div class="tier-signal">Active on LinkedIn / podcast</div>
+            </div>
+          </div>
+          <div class="tier-card t3">
+            <span class="tier-badge">TIER 3 · NURTURE</span>
+            <div class="tier-stat">2,152</div>
+            <div style="font-size:11px; color:var(--text-mute)">Lighter cadence · seasonal repassing</div>
+            <div class="tier-signals">
+              <div class="tier-signal">Fits firmographic profile</div>
+              <div class="tier-signal">Awaiting trigger event</div>
+              <div class="tier-signal">Cold-start cohort</div>
+            </div>
+          </div>
+        </div>
+      `
+    }
+  },
+
+  infra: {
+    crumb: ['Week 0', 'Foundation', 'Outbound Infrastructure'],
+    title: 'Outbound Infrastructure Build',
+    desc: 'Operationalize the sending stack. Domains, deliverability, AI personalization, the platform layer, and the reply engine — all live before a single campaign launches.',
+    pill: 'Phase 03 / Foundation',
+    subtabs: [
+      { id: 'domains', label: 'Email / Domain Setup' },
+      { id: 'ai', label: 'AI Automation Layer' },
+      { id: 'platform', label: 'Platform (Instantly + CRM)' },
+      { id: 'reply', label: 'AI Reply Engine' }
+    ],
+    sub: {
+      domains: () => `
+        <div class="kpi-row fade-in">
+          <div class="kpi"><div class="kpi-label">Sender Stacks</div><div class="kpi-val">3</div><div class="kpi-foot">SMTP · Google · Microsoft</div></div>
+          <div class="kpi b2"><div class="kpi-label">Live Mailboxes</div><div class="kpi-val">395</div><div class="kpi-foot">5×49 + 30×5 + reserve</div></div>
+          <div class="kpi b3"><div class="kpi-label">Avg. Deliverability</div><div class="kpi-val">97.8%</div><div class="kpi-foot">Last 14 days</div></div>
+          <div class="kpi b4"><div class="kpi-label">Warmup Status</div><div class="kpi-val">100%</div><div class="kpi-foot">All inboxes thermal</div></div>
+        </div>
+
+        <div class="card fade-in d1" style="padding:0; overflow:hidden;">
+          <div style="padding: 18px 20px; border-bottom: 1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h3 style="font-size:14px; margin-bottom:2px;">Domain Health Monitor</h3>
+              <p style="font-size:12px; color:var(--text-mute);">Per-domain deliverability, DNS posture, and inbox temperature</p>
+            </div>
+            <button class="btn">Refresh</button>
+          </div>
+          <div class="domain-row header">
+            <div>Domain</div><div>Provider</div><div>SPF</div><div>DKIM</div><div>DMARC</div><div>Health</div><div>Status</div>
+          </div>
+          ${[
+            ['acmehq.io','Google · 5 mbx','google',97,'live'],
+            ['acmehq.co','Google · 5 mbx','google',95,'live'],
+            ['get-acme.com','Google · 5 mbx','google',98,'live'],
+            ['try-acme.io','Google · 5 mbx','google',92,'live'],
+            ['acme-mail.com','SMTP · 49 mbx','smtp',96,'live'],
+            ['acme-outreach.io','SMTP · 49 mbx','smtp',99,'live'],
+            ['hello-acme.co','MS365 · 5 mbx','ms',88,'warming']
+          ].map(([d,p,prov,h,s]) => `
+            <div class="domain-row">
+              <div class="domain-name"><div class="favicon">${d[0].toUpperCase()}</div>${d}</div>
+              <div style="color:var(--text-mute); font-size:11px;">${p}</div>
+              <div><span class="badge green">PASS</span></div>
+              <div><span class="badge green">PASS</span></div>
+              <div><span class="badge ${prov==='ms'?'yellow':'green'}">${prov==='ms'?'P=NONE':'P=REJECT'}</span></div>
+              <div><div class="health-bar"><div class="health-bar-fill" style="width:${h}%;"></div></div></div>
+              <div><span class="badge ${s==='live'?'green':'yellow'}">${s.toUpperCase()}</span></div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="info-strip fade-in d2" style="margin-top:24px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div><strong>Sender architecture</strong> — 3 redundant stacks isolate risk. SMTP (5 × 49 mailboxes) carries primary volume; Google Workspace (30 × 5) handles high-trust outreach; Microsoft is reserve for warmup and rotation.</div>
+        </div>
+      `,
+      ai: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <div><strong>AI automation layer</strong> handles the work that breaks at scale: list cleaning, role inference, deep personalization, and per-prospect copy generation against your offer.</div>
+        </div>
+        <div class="ai-flow fade-in d1">
+          <div class="flow-step">
+            <div class="flow-num">01</div>
+            <h4>List Hygiene</h4>
+            <p>Email verification, role-title normalization, dedupe against CRM, suppression and risky-domain scrub.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">02</div>
+            <h4>Context Mining</h4>
+            <p>LinkedIn, company site, podcast, recent press, funding, hiring — vectorized into a per-lead context blob.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">03</div>
+            <h4>AI Personalization</h4>
+            <p>Per-lead opener generation against your offer + ICP angle. 4 variants scored for relevance / brevity.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">04</div>
+            <h4>QA + Push</h4>
+            <p>Spam-score check, length cap, sanity QA → push to Instantly with sender + variant + tier assignment.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-3 fade-in d2" style="margin-top:24px;">
+          <div class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="card-title">Verified Emails</div>
+            <div class="stat" style="font-size:24px; color: var(--success-dark);">98.4%</div>
+            <p style="color:var(--text-mute); font-size:11px;">After 3-pass verification</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(4,86,96,0.1); color:var(--accent-2);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+            <div class="card-title">Avg. Personalization Score</div>
+            <div class="stat" style="font-size:24px; color:var(--accent-2);">8.7<span style="font-size:14px; color:var(--text-mute)">/10</span></div>
+            <p style="color:var(--text-mute); font-size:11px;">Per-prospect rubric (specificity, fit, brevity)</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(110,106,99,0.1); color:var(--accent-3);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="card-title">Per-Lead Process Time</div>
+            <div class="stat" style="font-size:24px; color:var(--accent-3);">4.2s</div>
+            <p style="color:var(--text-mute); font-size:11px;">vs. ~6min manual baseline</p>
+          </div>
+        </div>
+      `,
+      platform: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <div><strong>Platform stack</strong> — Instantly orchestrates sending and inbox routing. CRM (HubSpot or your CRM) is bi-directionally synced for unified pipeline visibility.</div>
+        </div>
+        <div class="integrations fade-in d1">
+          <div class="integration">
+            <div class="int-logo" style="background:#0ea5e9">⚡</div>
+            <div>
+              <div class="int-name">Instantly</div>
+              <div class="int-meta">Sending · routing · warmup</div>
+            </div>
+            <span class="int-status">Connected</span>
+          </div>
+          <div class="integration">
+            <div class="int-logo" style="background:#ff7a59">H</div>
+            <div>
+              <div class="int-name">HubSpot CRM</div>
+              <div class="int-meta">Pipeline · contact sync</div>
+            </div>
+            <span class="int-status">Connected</span>
+          </div>
+          <div class="integration">
+            <div class="int-logo" style="background:#a78bfa">C</div>
+            <div>
+              <div class="int-name">Clay</div>
+              <div class="int-meta">Enrichment · scoring</div>
+            </div>
+            <span class="int-status">Connected</span>
+          </div>
+          <div class="integration">
+            <div class="int-logo" style="background:#2dd4bf">A</div>
+            <div>
+              <div class="int-name">AptAI Pipeline</div>
+              <div class="int-meta">Lead gen · orchestration</div>
+            </div>
+            <span class="int-status">Connected</span>
+          </div>
+          <div class="integration">
+            <div class="int-logo" style="background:#0a66c2">in</div>
+            <div>
+              <div class="int-name">LinkedIn Sales Nav</div>
+              <div class="int-meta">Sourcing · signals</div>
+            </div>
+            <span class="int-status">Connected</span>
+          </div>
+          <div class="integration">
+            <div class="int-logo" style="background:#22c55e">S</div>
+            <div>
+              <div class="int-name">Slack</div>
+              <div class="int-meta">Hot-lead alerts</div>
+            </div>
+            <span class="int-status">Connected</span>
+          </div>
+          <div class="integration">
+            <div class="int-logo" style="background:#ef4444">G</div>
+            <div>
+              <div class="int-name">Gmail / Workspace</div>
+              <div class="int-meta">30 × 5 sender stack</div>
+            </div>
+            <span class="int-status">Connected</span>
+          </div>
+          <div class="integration">
+            <div class="int-logo" style="background:#3b82f6">M</div>
+            <div>
+              <div class="int-name">MS365</div>
+              <div class="int-meta">Reserve · rotation</div>
+            </div>
+            <span class="int-status">Connected</span>
+          </div>
+        </div>
+
+        <div class="card fade-in d2" style="margin-top:24px;">
+          <h3 style="font-size:14px; margin-bottom:12px;">Bidirectional Sync Map</h3>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+            <div>
+              <div style="font-size: 11px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; font-weight:600;">→ To CRM</div>
+              <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--text-mute);">
+                <div>· Reply intent classification</div>
+                <div>· Open / click / meeting events</div>
+                <div>· Sequence stage + tier</div>
+                <div>· Hot-lead flag + handoff note</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 11px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; font-weight:600;">← From CRM</div>
+              <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--text-mute);">
+                <div>· Suppression list (closed/lost, customer)</div>
+                <div>· Deal stage changes (pause sequence)</div>
+                <div>· Owner reassignment</div>
+                <div>· Custom field overrides</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `,
+      reply: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <div><strong>AI reply engine</strong> reads every inbound reply, classifies intent, and either responds (booking, objection-handling, OOO) or routes to a human. No reply sits in an inbox.</div>
+        </div>
+
+        <h3 style="font-size:13px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:12px;">Last 7 Days — 312 Replies Classified</h3>
+        <div class="classifier fade-in d1">
+          <div class="class-bucket interested">
+            <div class="class-label">Interested</div>
+            <div class="class-count" style="color: var(--success-dark);">47</div>
+            <div style="font-size:11px; color:var(--text-mute)">Auto-book · meeting link</div>
+          </div>
+          <div class="class-bucket question">
+            <div class="class-label">Question</div>
+            <div class="class-count" style="color:var(--accent-2);">68</div>
+            <div style="font-size:11px; color:var(--text-mute)">AI draft + human send</div>
+          </div>
+          <div class="class-bucket oof">
+            <div class="class-label">OOF / Defer</div>
+            <div class="class-count" style="color:var(--warn);">39</div>
+            <div style="font-size:11px; color:var(--text-mute)">Pause + reschedule</div>
+          </div>
+          <div class="class-bucket objection">
+            <div class="class-label">Objection</div>
+            <div class="class-count" style="color:var(--danger);">58</div>
+            <div style="font-size:11px; color:var(--text-mute)">Handle + nurture</div>
+          </div>
+          <div class="class-bucket unsub">
+            <div class="class-label">Unsubscribe</div>
+            <div class="class-count" style="color:var(--text-mute);">100</div>
+            <div style="font-size:11px; color:var(--text-mute)">Suppressed</div>
+          </div>
+        </div>
+
+        <div class="grid grid-2 fade-in d2" style="margin-top:24px;">
+          <div class="live-feed">
+            <h3 style="font-size:13px; margin-bottom:12px; display:flex; align-items:center; gap:8px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%; box-shadow:0 0 6px var(--success); animation: pulse 1.6s infinite"></span>Live Reply Feed</h3>
+            ${[
+              ['g','Sarah K. · CMO @ Lattice', 'Classified INTERESTED · meeting link sent', '2m ago'],
+              ['b','Mark D. · VP Sales @ Pylon', 'Classified QUESTION · AI drafted reply ready for review', '4m ago'],
+              ['y','Jenna R. · Head of Ops @ Vanta', 'Classified OOF · sequence paused until Apr 22', '8m ago'],
+              ['g','Carlos P. · COO @ Mercury', 'Classified INTERESTED · auto-handoff to AE', '14m ago'],
+              ['y','Daniel L. · GTM @ Ramp', 'Classified OBJECTION · pricing — nurture seq B', '22m ago']
+            ].map(([d,who,what,when]) => `
+              <div class="feed-item">
+                <div class="feed-dot ${d}"></div>
+                <div class="feed-text">
+                  <div>${what}</div>
+                  <div class="feed-meta">${who} · ${when}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="card">
+            <h3 style="font-size:13px; margin-bottom:4px;">Classifier Accuracy</h3>
+            <p style="font-size:12px; color:var(--text-mute); margin-bottom:18px;">Validated against human-labeled sample, trailing 30 days</p>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              ${[
+                ['Interested',98],['Question',94],['OOF / Defer',97],['Objection',91],['Unsubscribe',100]
+              ].map(([n,p]) => `
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
+                    <span>${n}</span><span style="font-family:'JetBrains Mono', monospace; color: var(--accent-dark);">${p}%</span>
+                  </div>
+                  <div class="health-bar"><div class="health-bar-fill" style="width:${p}%"></div></div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `
+    }
+  },
+
+  launch: {
+    crumb: ['Week 2', 'Activation', 'Launch Campaigns'],
+    title: 'Launch Campaigns',
+    desc: 'Pre-flight deliverability, coordinated campaign waves, and a week-long volume ramp to peak send rate — without burning domain reputation.',
+    pill: 'Phase 04 / Activation',
+    pillColor: 'var(--accent-2)',
+    subtabs: [
+      { id: 'prelaunch', label: 'Pre-Launch Checklist' },
+      { id: 'coord', label: 'Campaign Coordination' },
+      { id: 'rampup', label: 'Launch & Ramp-Up' }
+    ],
+    sub: {
+      prelaunch: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <div><strong>Pre-flight check</strong> — every campaign passes a 12-point inspection before a single send. Inbox placement, spam-trigger words, DNS posture, throttle config, sender rotation.</div>
+        </div>
+
+        <div class="checklist fade-in d1">
+          ${[
+            ['done','Inbox placement test (GlockApps)','Avg. inbox: 92% · Tabs: 4% · Spam: 4%','green','PASS'],
+            ['done','Spam-trigger word audit','0 high-risk · 2 medium (reviewed)','green','PASS'],
+            ['done','DNS posture re-verified','SPF · DKIM · DMARC p=reject on all sending domains','green','PASS'],
+            ['done','MX records validated','All domains routing correctly','green','PASS'],
+            ['done','Warmup level confirmed','All 395 mailboxes at ≥ 100% thermal','green','PASS'],
+            ['done','Daily send limit per mailbox','Cap: 35/day · ramp from 5','green','SET'],
+            ['done','Sender rotation logic','Round-robin across 3 stacks · weighted by health','green','PASS'],
+            ['done','Suppression list synced','12,419 records loaded from CRM','green','PASS'],
+            ['done','Reply-engine routing tested','Slack alerts wired to #pipeline-hot','green','PASS'],
+            ['done','Tracking domain configured','clk.acme-mail.com · SSL valid','green','PASS'],
+            ['done','Unsubscribe link verified','One-click compliant · CAN-SPAM / GDPR','green','PASS'],
+            ['done','Approval from client','Copy + targeting signed off','green','APPROVED']
+          ].map(([s,t,m,c,l]) => `
+            <div class="check-item ${s}">
+              <div class="check-box"></div>
+              <div class="check-text">${t}<small>${m}</small></div>
+              <div class="check-status badge ${c}">${l}</div>
+            </div>
+          `).join('')}
+        </div>
+      `,
+      coord: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div><strong>Coordinated cadence</strong> — campaign waves staggered to avoid sender overload, with internal review gates baked into the calendar.</div>
+        </div>
+
+        <div class="calendar fade-in d1">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div>
+              <div style="font-size:14px; font-weight:600;">Launch Window — May 2026</div>
+              <div style="font-size:12px; color:var(--text-mute);">3 campaigns · 4,318 leads · phased over 7 days</div>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="btn">← Prev</button>
+              <button class="btn">Next →</button>
+            </div>
+          </div>
+          <div class="cal-grid">
+            ${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => `<div class="cal-head">${d}</div>`).join('')}
+            ${[
+              ['11','',''],['12','Pre-flight','review'],['13','',''],['14','C1 LIVE',1],['15','C2 LIVE',1],['16','',''],['17','',''],
+              ['18','Reply audit',''],['19','C3 LIVE',1],['20','',''],['21','Optim',''],['22','',''],['23','',''],['24','',''],
+              ['25','Variant B',1],['26','',''],['27','Mid-review',''],['28','',''],['29','',''],['30','',''],['31','','']
+            ].map(([n,e,active]) => `
+              <div class="cal-day ${active?'active':''}">
+                <div class="day-num">${n}</div>
+                ${e?`<div class="day-event">${e}</div>`:''}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="grid grid-3 fade-in d2" style="margin-top:24px;">
+          <div class="card">
+            <span class="card-tag" style="background: rgba(0,207,192,0.15); color: var(--accent-dark); border-color: rgba(0,207,192,0.25);">LIVE</span>
+            <div class="card-title">C1 — T1 Hot · Founder Send</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">412 leads · Mon May 14</div>
+            <div style="display:flex; gap:12px; font-size:11px;">
+              <span style="color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">5-touch</span></span>
+              <span style="color:var(--text-mute);">Owner: <span style="color:var(--text);">Avi</span></span>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-tag" style="background: rgba(0,207,192,0.15); color: var(--accent-dark); border-color: rgba(0,207,192,0.25);">LIVE</span>
+            <div class="card-title">C2 — T2 Warm · Multi-Touch</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">1,386 leads · Tue May 15</div>
+            <div style="display:flex; gap:12px; font-size:11px;">
+              <span style="color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">7-touch</span></span>
+              <span style="color:var(--text-mute);">Owner: <span style="color:var(--text);">SDR Pod</span></span>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-tag" style="background: rgba(4,86,96,0.15); color: var(--accent-2); border-color: rgba(4,86,96,0.25);">SCHEDULED</span>
+            <div class="card-title">C3 — T3 Nurture · Light Cadence</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">2,152 leads · Mon May 19</div>
+            <div style="display:flex; gap:12px; font-size:11px;">
+              <span style="color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">4-touch</span></span>
+              <span style="color:var(--text-mute);">Owner: <span style="color:var(--text);">Automation</span></span>
+            </div>
+          </div>
+        </div>
+      `,
+      rampup: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <div><strong>Week-long ramp</strong> — we don't slam mailboxes at max volume on day one. Daily send caps step up from 5/mailbox to 35/mailbox over 7 days while we monitor reply and bounce telemetry.</div>
+        </div>
+
+        <div class="card chart-card fade-in d1">
+          <div class="chart-title">Daily Send Volume — Ramp-Up Curve</div>
+          <div class="chart-sub">Aggregate across all 395 mailboxes · monitored against bounce / spam thresholds</div>
+          <div class="chart">
+            <div class="chart-grid">
+              <div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div>
+            </div>
+            ${[
+              ['D1','1,975',20],['D2','3,160',32],['D3','4,740',48],['D4','6,320',64],['D5','7,900',80],['D6','9,480',96],['D7','11,060',100],
+              ['D8','11,060',100],['D9','11,060',100],['D10','11,060',100],['D11','11,060',100],['D12','11,060',100],['D13','11,060',100],['D14','11,060',100]
+            ].map(([d,v,h]) => `
+              <div class="chart-bar" style="height:${h}%;">
+                <div class="value">${v}</div>
+                <div class="label">${d}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="grid grid-4 fade-in d2" style="margin-top:36px;">
+          <div class="card"><div class="stat-label">Peak Daily Volume</div><div class="stat" style="color: var(--accent-dark);">11,060</div><div class="stat-trend up">735–1000+ per sender stack</div></div>
+          <div class="card"><div class="stat-label">Avg. Bounce Rate</div><div class="stat" style="color: var(--success-dark);">1.2%</div><div class="stat-trend up">Industry benchmark &lt;3%</div></div>
+          <div class="card"><div class="stat-label">Avg. Reply Rate</div><div class="stat" style="color:var(--accent-2);">4.8%</div><div class="stat-trend up">+0.6 pp vs. cohort baseline</div></div>
+          <div class="card"><div class="stat-label">Meetings Booked (W1)</div><div class="stat" style="color:var(--accent-3);">12</div><div class="stat-trend up">$240K combined ACV target</div></div>
+        </div>
+      `
+    }
+  },
+
+  analytics: {
+    crumb: ['Week 4+', 'Optimization', 'Outbound Analytics'],
+    title: 'Outbound Analytics & Iteration',
+    desc: 'Live oversight, weekly performance reporting, and structured iteration. The engine compounds — every cohort gets sharper than the last.',
+    pill: 'Phase 05 / Optimization',
+    pillColor: 'var(--accent-3)',
+    subtabs: [
+      { id: 'oversight', label: 'Campaign Oversight' },
+      { id: 'reports', label: 'Weekly Reports' },
+      { id: 'iterate', label: 'Iterations & A/B Tests' }
+    ],
+    sub: {
+      oversight: () => `
+        <div class="kpi-row fade-in">
+          <div class="kpi"><div class="kpi-label">Active Campaigns</div><div class="kpi-val">3</div><div class="kpi-foot">Across 3 tiers</div></div>
+          <div class="kpi b2"><div class="kpi-label">Leads in Sequence</div><div class="kpi-val">3,950</div><div class="kpi-foot">Avg. 5.2 touches each</div></div>
+          <div class="kpi b3"><div class="kpi-label">Hot Replies (7d)</div><div class="kpi-val">47</div><div class="kpi-foot">Pipeline: $940K</div></div>
+          <div class="kpi b4"><div class="kpi-label">Meetings Booked</div><div class="kpi-val">28</div><div class="kpi-foot">23.4% reply→meeting</div></div>
+        </div>
+
+        <div class="grid grid-2 fade-in d1">
+          <div class="card chart-card">
+            <div class="chart-title">Reply Rate Trend — 4 Weeks</div>
+            <div class="chart-sub">Aggregated across active campaigns</div>
+            <div class="chart">
+              <div class="chart-grid"><div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div></div>
+              ${[['W1','3.2%',32],['W2','3.9%',48],['W3','4.4%',62],['W4','4.8%',78]].map(([d,v,h]) => `
+                <div class="chart-bar" style="height:${h}%; background: linear-gradient(180deg, var(--accent-2), var(--accent));">
+                  <div class="value">${v}</div>
+                  <div class="label">${d}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="live-feed">
+            <h3 style="font-size:13px; margin-bottom:12px; display:flex; align-items:center; gap:8px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%; box-shadow:0 0 6px var(--success); animation: pulse 1.6s infinite"></span>Pipeline Pulse</h3>
+            ${[
+              ['g','Meeting booked: Sarah K. (Lattice, CMO)','Replied within 4h · auto-scheduled','Just now'],
+              ['b','Variant B (subject) +1.4pp reply lift','Auto-promoted to 60% traffic','6m ago'],
+              ['g','Meeting booked: Carlos P. (Mercury, COO)','Round 2 reply · AI handed off to AE','12m ago'],
+              ['y','Domain warning: acmehq.co reputation -3','Throttled; ms365 reserve absorbing','34m ago'],
+              ['g','Closed-won: $58K ACV (Pylon)','Source: C1 founder send, touch 2','2h ago']
+            ].map(([d,what,extra,when]) => `
+              <div class="feed-item">
+                <div class="feed-dot ${d}"></div>
+                <div class="feed-text">
+                  <div>${what}</div>
+                  <div class="feed-meta">${extra} · ${when}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="grid grid-3 fade-in d2" style="margin-top:24px;">
+          <div class="card">
+            <div class="card-title">Campaign Performance · C1 Hot</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">412 leads · 5-touch · founder send</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Open Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">68.2%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color: var(--accent-dark);">9.4%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Meetings</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">14</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Campaign Performance · C2 Warm</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">1,386 leads · 7-touch · automated</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Open Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">52.8%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color:var(--accent-2);">4.1%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Meetings</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">11</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Campaign Performance · C3 Nurture</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">2,152 leads · 4-touch · light cadence</div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Open Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">41.6%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color:var(--accent-3);">2.7%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Meetings</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">3</span></div>
+            </div>
+          </div>
+        </div>
+      `,
+      reports: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <div><strong>Weekly performance report</strong> — every Monday. Shipped as a branded PDF + Loom walkthrough. Covers send health, reply quality, pipeline impact, and next-week priorities.</div>
+        </div>
+
+        <div class="report-mock fade-in d1">
+          <div class="report-head">
+            <div>
+              <div style="font-size:11px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:4px;">Weekly Performance Report</div>
+              <div style="font-size:18px; font-weight:700;">Acme Co · Week of May 12 – May 18</div>
+              <div style="font-size:11px; color:var(--text-mute); margin-top:4px;">Prepared by AptAI Systems · Avi Raju</div>
+            </div>
+            <div style="text-align:right;">
+              <button class="btn">Download PDF</button>
+            </div>
+          </div>
+
+          <div class="report-stats">
+            <div class="report-stat"><div class="label">Emails Sent</div><div class="value">38,420</div></div>
+            <div class="report-stat"><div class="label">Reply Rate</div><div class="value" style="color: var(--accent-dark);">4.8%</div></div>
+            <div class="report-stat"><div class="label">Hot Replies</div><div class="value">47</div></div>
+            <div class="report-stat"><div class="label">Meetings</div><div class="value" style="color:var(--accent-2);">28</div></div>
+          </div>
+
+          <div style="border-top:1px solid var(--border); padding-top:16px;">
+            <div style="font-size:12px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:10px;">Highlights</div>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+              ${[
+                ['✓','C1 (founder send) outperformed forecast by +1.7pp reply rate'],
+                ['✓','Variant B subject line auto-promoted — captured the top 60% of cohort traffic'],
+                ['◉','acmehq.co domain reputation dropped 3 points — throttled and rotated'],
+                ['→','Next week: expand T2 by 800 leads from new vertical (e-commerce platforms)']
+              ].map(([i,t]) => `
+                <li style="display:flex; gap:10px; font-size:13px;">
+                  <span style="color: var(--accent-dark); font-weight:700; font-family:'JetBrains Mono', monospace;">${i}</span>
+                  <span>${t}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid grid-3 fade-in d2" style="margin-top:24px;">
+          <div class="card">
+            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="card-title">Pipeline Impact</div>
+            <div class="stat" style="font-size:24px;">$940K</div>
+            <p style="font-size:11px; color:var(--text-mute);">Open pipeline sourced from outbound, 7d trailing</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(4,86,96,0.1); color:var(--accent-2);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
+            <div class="card-title">Cost per Meeting</div>
+            <div class="stat" style="font-size:24px; color:var(--accent-2);">$284</div>
+            <p style="font-size:11px; color:var(--text-mute);">All-in: infrastructure + AI + ops</p>
+          </div>
+          <div class="card">
+            <div class="card-icon" style="background:rgba(110,106,99,0.1); color:var(--accent-3);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+            <div class="card-title">SDR Equivalent</div>
+            <div class="stat" style="font-size:24px; color:var(--accent-3);">≈ 4.2x</div>
+            <p style="font-size:11px; color:var(--text-mute);">Meetings vs. typical 1-SDR output</p>
+          </div>
+        </div>
+      `,
+      iterate: () => `
+        <div class="info-strip fade-in">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15A9 9 0 0 1 5.64 18.36L1 14"/></svg>
+          <div><strong>Continuous iteration loop</strong> — subject lines, openers, offers, and cadence are tested in parallel. Winners auto-promote into the next cohort.</div>
+        </div>
+
+        <div class="grid grid-2 fade-in d1">
+          <div class="ab-card">
+            <div class="ab-head">
+              <div class="ab-title">Subject Line · C2 Warm</div>
+              <span class="ab-status winner">WINNER · A</span>
+            </div>
+            <div class="ab-variant win">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">Variant A</span><span class="ab-variant-rate">62.1% open · 4.8% reply</span>
+              </div>
+              <div class="ab-variant-copy">"quick thought on {{company}}'s pipeline"</div>
+            </div>
+            <div class="ab-variant">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">Variant B</span><span class="ab-variant-rate">48.4% open · 3.4% reply</span>
+              </div>
+              <div class="ab-variant-copy">"helping {{company}} hit Q3 targets"</div>
+            </div>
+          </div>
+
+          <div class="ab-card">
+            <div class="ab-head">
+              <div class="ab-title">Opener Hook · C1 Hot</div>
+              <span class="ab-status live">RUNNING · 7d</span>
+            </div>
+            <div class="ab-variant win">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">Variant A — Trigger-based</span><span class="ab-variant-rate">9.4% reply</span>
+              </div>
+              <div class="ab-variant-copy">"saw {{company}} just hired its first VP Sales — congrats…"</div>
+            </div>
+            <div class="ab-variant">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">Variant B — Pain-led</span><span class="ab-variant-rate">7.1% reply</span>
+              </div>
+              <div class="ab-variant-copy">"most {{vertical}} teams I talk to are stuck at top-of-funnel…"</div>
+            </div>
+          </div>
+
+          <div class="ab-card">
+            <div class="ab-head">
+              <div class="ab-title">CTA · All Campaigns</div>
+              <span class="ab-status live">RUNNING · 3d</span>
+            </div>
+            <div class="ab-variant">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">Variant A — Soft</span><span class="ab-variant-rate">4.1% reply</span>
+              </div>
+              <div class="ab-variant-copy">"worth a quick chat?"</div>
+            </div>
+            <div class="ab-variant win">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">Variant B — Direct</span><span class="ab-variant-rate">5.6% reply</span>
+              </div>
+              <div class="ab-variant-copy">"open to 15 min Thu or Fri?"</div>
+            </div>
+          </div>
+
+          <div class="ab-card">
+            <div class="ab-head">
+              <div class="ab-title">Cadence Spacing · C2 Warm</div>
+              <span class="ab-status winner">WINNER · B</span>
+            </div>
+            <div class="ab-variant">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">A — Tight (2d gap)</span><span class="ab-variant-rate">3.7% reply</span>
+              </div>
+              <div class="ab-variant-copy">7 touches over 14 days</div>
+            </div>
+            <div class="ab-variant win">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">B — Spaced (4d gap)</span><span class="ab-variant-rate">4.9% reply</span>
+              </div>
+              <div class="ab-variant-copy">7 touches over 28 days</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-strip fade-in d2" style="margin-top:24px; background: linear-gradient(90deg, rgba(110,106,99,0.06), transparent); border-color: rgba(110,106,99,0.15);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent-3);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <div><strong>Compounding effect</strong> — by week 8, reply rates typically land 40–60% above week-2 baseline. The iteration loop is what turns this from a campaign into an engine.</div>
+        </div>
+      `
+    }
+  }
+};
+
+// ====== ROUTING / STATE ======
+const state = {
+  page: 'tam',
+  subtab: null
+};
+
+function render() {
+  const p = PAGES[state.page];
+  const container = document.getElementById('page-container');
+
+  // pick initial subtab if not yet chosen for this page
+  if (p.subtabs && !p.sub[state.subtab]) {
+    state.subtab = p.subtabs[0].id;
+  }
+
+  const pillColor = p.pillColor || 'var(--accent)';
+
+  let html = `
+    <div class="crumb fade-in">
+      ${p.crumb.map((c,i) => i === p.crumb.length-1 ? `<span class="accent-text">${c}</span>` : `<span>${c}</span><span class="crumb-sep">/</span>`).join('')}
+    </div>
+    <div class="page-header fade-in">
+      <div>
+        <div class="page-pill" style="border-color: ${pillColor === 'var(--accent)' ? 'rgba(0,207,192,0.2)' : pillColor === 'var(--accent-2)' ? 'rgba(4,86,96,0.2)' : 'rgba(110,106,99,0.2)'};">
+          <span class="dot" style="background: ${pillColor}; box-shadow: 0 0 6px ${pillColor};"></span>
+          ${p.pill}
+        </div>
+        <h1 class="page-title">${p.title}</h1>
+        <p class="page-desc">${p.desc}</p>
+      </div>
+      <div style="display:flex; gap:8px; flex-shrink:0;">
+        <button class="btn">Share view</button>
+        <button class="btn primary">Schedule call →</button>
+      </div>
+    </div>
+  `;
+
+  if (p.subtabs) {
+    html += `<div class="subtabs fade-in">${p.subtabs.map(s => `<div class="subtab ${s.id === state.subtab ? 'active' : ''}" data-sub="${s.id}">${s.label}</div>`).join('')}</div>`;
+    html += `<div id="sub-content">${p.sub[state.subtab]()}</div>`;
+  } else {
+    html += `<div id="sub-content">${p.render()}</div>`;
+  }
+
+  html += `
+    <div class="footer-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <div>This is a live operating view of AptAI's cold outbound engine — the same dashboard your team would see during engagement. Click any sub-section above or any of the 5 phases on the left rail to keep walking through.</div>
+    </div>
+  `;
+
+  container.innerHTML = html;
+
+  // wire subtabs
+  container.querySelectorAll('.subtab').forEach(el => {
+    el.addEventListener('click', () => {
+      state.subtab = el.dataset.sub;
+      render();
+    });
+  });
+
+  // update nav active state
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const active = document.querySelector(`.nav-item[data-page="${state.page}"]`);
+  if (active) active.classList.add('active');
+
+  // mark completed (everything before current)
+  const order = ['tam','icp','infra','launch','analytics'];
+  const currentIdx = order.indexOf(state.page);
+  document.querySelectorAll('.nav-item').forEach(n => {
+    const idx = order.indexOf(n.dataset.page);
+    if (idx < currentIdx) n.classList.add('completed');
+    else n.classList.remove('completed');
+  });
+
+  // scroll main to top
+  document.querySelector('.main').scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// nav wiring
+document.querySelectorAll('.nav-item').forEach(n => {
+  n.addEventListener('click', () => {
+    state.page = n.dataset.page;
+    state.subtab = null;
+    render();
+  });
+});
+
+// init
+render();
+</script>
+</body>
+</html>
