@@ -1131,6 +1131,23 @@
     gap: 12px;
     align-items: center;
   }
+
+  /* ============ INFRA CONFIG WIDGET ============ */
+  .infra-config { margin-top: 32px; padding: 14px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; }
+  .infra-config-head { font-size: 11px; color: var(--text-mute); margin-bottom: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; display: flex; justify-content: space-between; align-items: center; }
+  .infra-config-head .live-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 6px var(--accent); animation: pulse 1.6s infinite; }
+  .esp-row { margin-bottom: 14px; }
+  .esp-row-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; margin-bottom: 6px; }
+  .esp-name { color: var(--text); font-weight: 600; font-size: 12px; }
+  .esp-meta { font-family: 'JetBrains Mono', monospace; color: var(--text-mute); font-size: 10px; }
+  .esp-meta b { color: var(--accent-dark); font-weight: 600; }
+  .esp-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: var(--border); border-radius: 2px; outline: none; cursor: pointer; }
+  .esp-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-dark); cursor: pointer; border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--accent-dark); }
+  .esp-slider::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--accent-dark); cursor: pointer; border: 2px solid var(--bg); }
+  .infra-total { margin-top: 10px; padding: 10px 0 2px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .total-label { font-size: 10px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+  .total-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; color: var(--accent-dark); }
+  .total-sub { font-size: 10px; color: var(--text-mute); margin-top: 2px; text-align: right; font-family: 'JetBrains Mono', monospace; }
 </style>
 </head>
 <body>
@@ -1221,16 +1238,42 @@
       </nav>
     </div>
 
-    <div style="margin-top:32px; padding: 14px; background: var(--surface-2); border:1px solid var(--border); border-radius: 10px;">
-      <div style="font-size: 11px; color: var(--text-mute); margin-bottom: 8px; font-weight:600; text-transform: uppercase; letter-spacing: 0.06em;">Infrastructure</div>
-      <div style="display:flex; justify-content:space-between; font-size: 12px; padding: 4px 0;">
-        <span style="color:var(--text-mute)">Senders</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600">3 stacks</span>
+    <div class="infra-config">
+      <div class="infra-config-head">
+        <span>Infrastructure</span>
+        <span class="live-dot"></span>
       </div>
-      <div style="display:flex; justify-content:space-between; font-size: 12px; padding: 4px 0;">
-        <span style="color:var(--text-mute)">SMTP × Micro</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600">5 × 49</span>
+
+      <div class="esp-row">
+        <div class="esp-row-head">
+          <span class="esp-name">SMTP</span>
+          <span class="esp-meta"><b id="smtp-domains">5</b> dom · <b id="smtp-sends">300</b>/day</span>
+        </div>
+        <input type="range" min="0" max="20" value="5" id="smtp-slider" class="esp-slider" />
       </div>
-      <div style="display:flex; justify-content:space-between; font-size: 12px; padding: 4px 0;">
-        <span style="color:var(--text-mute)">Google Workspace</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600">30 × 5</span>
+
+      <div class="esp-row">
+        <div class="esp-row-head">
+          <span class="esp-name">Outlook</span>
+          <span class="esp-meta"><b id="outlook-domains">2</b> dom · <b id="outlook-sends">490</b>/day</span>
+        </div>
+        <input type="range" min="0" max="10" value="2" id="outlook-slider" class="esp-slider" />
+      </div>
+
+      <div class="esp-row">
+        <div class="esp-row-head">
+          <span class="esp-name">Google</span>
+          <span class="esp-meta"><b id="google-domains">30</b> dom · <b id="google-sends">1,800</b>/day</span>
+        </div>
+        <input type="range" min="0" max="60" value="30" id="google-slider" class="esp-slider" />
+      </div>
+
+      <div class="infra-total">
+        <div>
+          <div class="total-label">Total / day</div>
+          <div class="total-sub" id="total-mailboxes" style="text-align:left; margin-top:2px;">15 + 98 + 90 mbx</div>
+        </div>
+        <div class="total-val" id="total-sends">2,590</div>
       </div>
     </div>
   </aside>
@@ -2210,6 +2253,32 @@ document.querySelectorAll('.nav-item').forEach(n => {
     render();
   });
 });
+
+// ====== INFRA CONFIG WIDGET ======
+const ESP = {
+  smtp:    { mbxPerDomain: 3,  sendsPerMbx: 20 },
+  outlook: { mbxPerDomain: 49, sendsPerMbx: 5  },
+  google:  { mbxPerDomain: 3,  sendsPerMbx: 20 }
+};
+function updateInfra() {
+  let totalSends = 0;
+  const mbx = {};
+  Object.keys(ESP).forEach(k => {
+    const d = +document.getElementById(k + '-slider').value;
+    const m = d * ESP[k].mbxPerDomain;
+    const s = m * ESP[k].sendsPerMbx;
+    mbx[k] = m;
+    totalSends += s;
+    document.getElementById(k + '-domains').textContent = d;
+    document.getElementById(k + '-sends').textContent = s.toLocaleString();
+  });
+  document.getElementById('total-sends').textContent = totalSends.toLocaleString();
+  document.getElementById('total-mailboxes').textContent = `${mbx.smtp} + ${mbx.outlook} + ${mbx.google} mbx`;
+}
+['smtp-slider','outlook-slider','google-slider'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateInfra);
+});
+updateInfra();
 
 // init
 render();
