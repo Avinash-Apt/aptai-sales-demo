@@ -1144,10 +1144,13 @@
   .esp-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: var(--border); border-radius: 2px; outline: none; cursor: pointer; }
   .esp-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--accent-dark); cursor: pointer; border: 2px solid var(--bg); box-shadow: 0 0 0 1px var(--accent-dark); }
   .esp-slider::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--accent-dark); cursor: pointer; border: 2px solid var(--bg); }
-  .infra-total { margin-top: 10px; padding: 10px 0 2px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .infra-total { margin-top: 10px; padding: 10px 0 2px; border-top: 1px solid var(--border); }
+  .infra-total-row { display: flex; justify-content: space-between; align-items: center; }
+  .infra-total-row + .infra-total-row { margin-top: 6px; }
   .total-label { font-size: 10px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
   .total-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 18px; color: var(--accent-dark); }
-  .total-sub { font-size: 10px; color: var(--text-mute); margin-top: 2px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+  .total-cost { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; color: var(--text); }
+  .total-cost .cost-annual { color: var(--text-mute); font-weight: 500; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -1269,11 +1272,14 @@
       </div>
 
       <div class="infra-total">
-        <div>
-          <div class="total-label">Total / day</div>
-          <div class="total-sub" id="total-mailboxes" style="text-align:left; margin-top:2px;">24 + 196 + 24 mbx</div>
+        <div class="infra-total-row">
+          <span class="total-label">Total / day</span>
+          <span class="total-val" id="total-sends">1,940</span>
         </div>
-        <div class="total-val" id="total-sends">1,940</div>
+        <div class="infra-total-row">
+          <span class="total-label">Cost</span>
+          <span class="total-cost"><span id="cost-monthly">$288</span>/mo <span class="cost-annual">(<span id="cost-domains">$240</span>/yr dom)</span></span>
+        </div>
       </div>
     </div>
   </aside>
@@ -2256,24 +2262,26 @@ document.querySelectorAll('.nav-item').forEach(n => {
 
 // ====== INFRA CONFIG WIDGET ======
 const ESP = {
-  smtp:    { mbxPerDomain: 3,  sendsPerMbx: 20 },
-  outlook: { mbxPerDomain: 49, sendsPerMbx: 5  },
-  google:  { mbxPerDomain: 3,  sendsPerMbx: 20 }
+  smtp:    { mbxPerDomain: 3,  sendsPerMbx: 20, costPerDomainMo: 3 * 3.50 },
+  outlook: { mbxPerDomain: 49, sendsPerMbx: 5,  costPerDomainMo: 30 },
+  google:  { mbxPerDomain: 3,  sendsPerMbx: 20, costPerDomainMo: 3 * 3.50 }
 };
+const DOMAIN_COST_YEAR = 12;
 function updateInfra() {
-  let totalSends = 0;
-  const mbx = {};
+  let totalSends = 0, totalMonthly = 0, totalDomains = 0;
   Object.keys(ESP).forEach(k => {
     const d = +document.getElementById(k + '-slider').value;
-    const m = d * ESP[k].mbxPerDomain;
-    const s = m * ESP[k].sendsPerMbx;
-    mbx[k] = m;
+    const s = d * ESP[k].mbxPerDomain * ESP[k].sendsPerMbx;
     totalSends += s;
+    totalMonthly += d * ESP[k].costPerDomainMo;
+    totalDomains += d;
     document.getElementById(k + '-domains').textContent = d;
     document.getElementById(k + '-sends').textContent = s.toLocaleString();
   });
+  const fmt = n => '$' + Math.round(n).toLocaleString();
   document.getElementById('total-sends').textContent = totalSends.toLocaleString();
-  document.getElementById('total-mailboxes').textContent = `${mbx.smtp} + ${mbx.outlook} + ${mbx.google} mbx`;
+  document.getElementById('cost-monthly').textContent = fmt(totalMonthly);
+  document.getElementById('cost-domains').textContent = fmt(totalDomains * DOMAIN_COST_YEAR);
 }
 ['smtp-slider','outlook-slider','google-slider'].forEach(id => {
   document.getElementById(id).addEventListener('input', updateInfra);
