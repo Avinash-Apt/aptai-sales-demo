@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AptAI — Cold Outbound Sales Demo</title>
+<title>AptAI — Deal Origination Sales Demo</title>
 <link rel="icon" href="https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/Logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1316,14 +1316,14 @@
     <div class="brand">
       <div class="brand-logo"><img src="https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/Logo.png" alt="AptAI" /></div>
       <div>
-        <div class="brand-name">AptAI <span style="color:var(--text-dim); font-weight:500; font-size:11px; margin-left:6px;">Cold Outbound Demo</span></div>
-        <div class="brand-sub">B2B Revenue · Sales Enablement Walkthrough</div>
+        <div class="brand-name">AptAI <span style="color:var(--text-dim); font-weight:500; font-size:11px; margin-left:6px;">Deal Origination Demo</span></div>
+        <div class="brand-sub">PE / M&amp;A · Proprietary Sourcing Walkthrough</div>
       </div>
     </div>
     <div class="top-actions">
       <div class="demo-switch" title="Switch sales demo">
-        <a href="./" class="active">Revenue Gen</a>
-        <a href="./pe/">Deal Origination</a>
+        <a href="../">Revenue Gen</a>
+        <a href="./" class="active">Deal Origination</a>
       </div>
       <div class="volume-display">
         <span style="color:var(--text-mute)">VOL</span>
@@ -1345,7 +1345,7 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="sidebar-label">Engagement Roadmap</div>
+    <div class="sidebar-label">Origination Roadmap</div>
 
     <div class="phase-group">
       <div class="phase-header">
@@ -1355,17 +1355,17 @@
       <nav class="timeline">
         <div class="nav-item" data-page="tam">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          <span class="nav-text">TAM Mapping</span>
+          <span class="nav-text">Market Map</span>
           <span class="nav-meta">01</span>
         </div>
         <div class="nav-item" data-page="icp">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <span class="nav-text">ICP & List Building</span>
+          <span class="nav-text">Investment Criteria</span>
           <span class="nav-meta">02</span>
         </div>
         <div class="nav-item" data-page="infra">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="6" rx="1"/><rect x="2" y="15" width="20" height="6" rx="1"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-          <span class="nav-text">Infrastructure</span>
+          <span class="nav-text">Origination Infra</span>
           <span class="nav-meta">03</span>
         </div>
       </nav>
@@ -1374,12 +1374,12 @@
     <div class="phase-group">
       <div class="phase-header">
         <span class="phase-badge" style="background:rgba(4,86,96,0.1); color:var(--accent-2)">Week 2</span>
-        <span class="phase-title">Activation</span>
+        <span class="phase-title">Coverage</span>
       </div>
       <nav class="timeline" style="--accent: var(--accent-2)">
         <div class="nav-item" data-page="launch">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg>
-          <span class="nav-text">Launch Campaigns</span>
+          <span class="nav-text">Activate Sourcing</span>
           <span class="nav-meta">04</span>
         </div>
       </nav>
@@ -1393,7 +1393,7 @@
       <nav class="timeline">
         <div class="nav-item" data-page="analytics">
           <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          <span class="nav-text">Outbound Analytics</span>
+          <span class="nav-text">Origination Analytics</span>
           <span class="nav-meta">05</span>
         </div>
       </nav>
@@ -1473,49 +1473,49 @@
 const PAGES = {
 
   tam: {
-    crumb: ['Week 0', 'Foundation', 'TAM Mapping'],
-    title: 'TAM Mapping',
-    desc: 'Size the market. Find the highest-fit ICP segment to attack first.',
+    crumb: ['Week 0', 'Foundation', 'Market Map'],
+    title: 'Market Map — Target Universe',
+    desc: 'Size the full universe of acquisition candidates in your thesis sectors — then cut to mandate-fit targets before anyone reaches out.',
     pill: 'Phase 01 / Foundation',
     pillColor: 'var(--accent)',
     render: () => `
       <div class="kpi-row fade-in">
-        <div class="kpi"><div class="kpi-label">Total Addressable Market</div><div class="kpi-val">187,400</div><div class="kpi-foot">Global accounts in category</div></div>
-        <div class="kpi b2"><div class="kpi-label">Serviceable Market</div><div class="kpi-val">42,800</div><div class="kpi-foot">North America, 25–500 FTE</div></div>
-        <div class="kpi b3"><div class="kpi-label">Obtainable (12mo)</div><div class="kpi-val">3,250</div><div class="kpi-foot">Realistic outbound reach</div></div>
-        <div class="kpi b4"><div class="kpi-label">Best-Fit ICP Pool</div><div class="kpi-val">812</div><div class="kpi-foot">Highest intent / fit score</div></div>
+        <div class="kpi"><div class="kpi-label">Target Universe</div><div class="kpi-val">48,200</div><div class="kpi-foot">Operating cos in thesis sectors</div></div>
+        <div class="kpi b2"><div class="kpi-label">Serviceable Map</div><div class="kpi-val">9,640</div><div class="kpi-foot">NA · size band · ownership type</div></div>
+        <div class="kpi b3"><div class="kpi-label">Mandate-Fit (12mo)</div><div class="kpi-val">1,180</div><div class="kpi-foot">Check size + thesis screens</div></div>
+        <div class="kpi b4"><div class="kpi-label">Priority Queue</div><div class="kpi-val">286</div><div class="kpi-foot">Highest thesis-fit · not in process</div></div>
       </div>
 
       <div class="grid grid-2 fade-in d1">
         <div class="card">
-          <h3 style="font-size:15px; margin-bottom:4px;">Market Funnel</h3>
-          <p style="color:var(--text-mute); font-size:12px; margin-bottom:24px;">TAM → ICP. The slice we actually pursue first.</p>
+          <h3 style="font-size:15px; margin-bottom:4px;">Market Map Funnel</h3>
+          <p style="color:var(--text-mute); font-size:12px; margin-bottom:24px;">Universe → mandate-fit. Proprietary edge: pre-qualify before outreach.</p>
           <div class="tam-viz">
             <div class="tam-circle tam"></div>
             <div class="tam-circle sam"></div>
             <div class="tam-circle som"></div>
             <div class="tam-circle icp">
               <div style="text-align:center;">
-                <div style="font-size:11px; color:var(--text-mute); font-weight:600;">ICP POOL</div>
-                <div style="font-family:'JetBrains Mono', monospace; font-weight:700; font-size:18px; color: var(--accent-dark);">812</div>
+                <div style="font-size:11px; color:var(--text-mute); font-weight:600;">PRIORITY</div>
+                <div style="font-family:'JetBrains Mono', monospace; font-weight:700; font-size:18px; color: var(--accent-dark);">286</div>
               </div>
             </div>
-            <div class="tam-label" style="top:4%; left:50%; transform:translateX(-50%);">TAM <small>187.4K</small></div>
-            <div class="tam-label" style="top:20%; right:4%;">SAM <small>42.8K</small></div>
-            <div class="tam-label" style="bottom:18%; left:8%;">SOM <small>3.25K</small></div>
+            <div class="tam-label" style="top:4%; left:50%; transform:translateX(-50%);">Universe <small>48.2K</small></div>
+            <div class="tam-label" style="top:20%; right:4%;">Serviceable <small>9.6K</small></div>
+            <div class="tam-label" style="bottom:18%; left:8%;">Mandate-fit <small>1.18K</small></div>
           </div>
         </div>
 
         <div class="card">
-          <h3 style="font-size:15px; margin-bottom:4px;">Segment Breakdown</h3>
-          <p style="color:var(--text-mute); font-size:12px; margin-bottom:18px;">Vertical mix within SOM — sequenced by signal density.</p>
+          <h3 style="font-size:15px; margin-bottom:4px;">Sector Coverage</h3>
+          <p style="color:var(--text-mute); font-size:12px; margin-bottom:18px;">Sequenced by thesis density and succession / carve-out signal.</p>
           <div style="display:flex; flex-direction:column; gap:12px;">
             ${[
-              ['B2B SaaS — Series A/B', 38, 1238],
-              ['Marketing Agencies', 22, 715],
-              ['Professional Services', 18, 585],
-              ['E-commerce Platforms', 12, 390],
-              ['Fintech / Insurtech', 10, 325]
+              ['Specialty manufacturing / industrials', 32, 378],
+              ['Business services / B2B services', 24, 283],
+              ['Healthcare services (non-core)', 18, 212],
+              ['Niche software / tech-enabled services', 14, 165],
+              ['Financial services adjacencies', 12, 142]
             ].map(([n, p, c]) => `
               <div>
                 <div style="display:flex; justify-content:space-between; margin-bottom:6px; font-size:12px;">
@@ -1531,33 +1531,32 @@ const PAGES = {
 
       <div class="info-strip fade-in d2" style="margin-top:24px;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        <div><strong>Method:</strong> Every segment is anchored to a tangible <em>buying signal</em> before we activate.</div>
+        <div><strong>Why this beats broker-run flow:</strong> we know mandate-fit and process status <em>before</em> we pick up the phone — that's the proprietary origination edge over inbound auctions.</div>
       </div>
     `
   },
 
   icp: {
-    crumb: ['Week 0', 'Foundation', 'ICP & List Building'],
-    title: 'ICP Definition & List Building',
-    desc: 'Define ICP, score every account, and source enriched leads ready for campaigns.',
+    crumb: ['Week 0', 'Foundation', 'Investment Criteria'],
+    title: 'Investment Criteria & Target List',
+    desc: 'Turn the thesis into Ideal Company Profiles, score every target, and build a ranked proprietary list — owners who may sell, merge, or partner.',
     pill: 'Phase 02 / Foundation',
     subtabs: [
-      { id: 'persona', label: 'Identify Target Market & Define ICP' },
-      { id: 'qual', label: 'Qualification Criteria' },
-      { id: 'pipeline', label: 'Lead Sourcing + Enrichment' },
-      { id: 'tiers', label: 'Signal-Based Tiers (T1·T2·T3)' }
+      { id: 'persona', label: 'Buyer Personas (Your Side)' },
+      { id: 'qual', label: 'Investment Criteria Screen' },
+      { id: 'pipeline', label: 'Target Sourcing + Enrichment' },
+      { id: 'tiers', label: 'Signal Tiers (T1·T2·T3)' }
     ],
     sub: {
       persona: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-          <div><strong>3 anchor personas</strong> — built from won-deal patterns and disqualification data.</div>
+          <div><strong>Two emotional entry points, one product.</strong> Long-hold, founder-friendly acquirers who want proprietary origination as a real channel — not a side experiment.</div>
         </div>
-        <div class="grid grid-3 fade-in d1">
+        <div class="grid grid-2 fade-in d1">
           ${[
-            { img:'https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/ChatGPT+CRO', n:'Revenue / GTM Lead', r:'VP Sales · Head of GTM', co:'B2B SaaS · 50–200 FTE', rev:'$5M–$25M ARR', stack:'HubSpot, Apollo, Outreach', trig:'New funding · Hiring SDRs', pain:'Pipeline stalled, top-of-funnel weak' },
-            { img:'https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/ChatGPT+CMO', n:'Marketing Operator', r:'Head of Demand Gen', co:'B2B SaaS · 25–100 FTE', rev:'$2M–$15M ARR', stack:'Marketo, 6sense, ZoomInfo', trig:'New CMO · MQL target raised', pain:'Inbound plateau, paid CAC rising' },
-            { img:'https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/ChatGPT+Agency+Operator', n:'Agency Operator', r:'Founder · MD', co:'Agency · 10–80 FTE', rev:'$500K–$10M', stack:'Instantly, Smartlead, Lemlist', trig:'New service line · Client churn', pain:'Need predictable new-logo flow' }
+            { img:'https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/ChatGPT+CRO', n:'Operator-Led Acquirer', r:'Search fund / partner-equity buyer', co:'Self-image: successor-operator, not "just PE"', rev:'Check: $1–15M EBITDA band', stack:'Direct owner outreach + light CRM', trig:'New mandate · sector focus locked', pain:'Owners distrust PE framing; broker-only flow insufficient' },
+            { img:'https://apt-ai-systems-assets.s3.us-east-2.amazonaws.com/ChatGPT+CMO', n:'Platform Origination Lead', r:'M&A / proprietary sourcing owner', co:'Permanent-hold acquisition group', rev:'Platform + add-on thesis', stack:'Salesforce, internal scores, broker inbox', trig:'Pressure to build a real proprietary channel', pain:'Duct-tape execution; weak replies; domain risk' }
           ].map(p => `
             <div class="persona-card">
               <div class="persona-head">
@@ -1567,34 +1566,38 @@ const PAGES = {
                   <div class="persona-role">${p.r}</div>
                 </div>
               </div>
-              <div class="persona-attr"><span class="persona-attr-label">Company</span><span class="persona-attr-val">${p.co}</span></div>
-              <div class="persona-attr"><span class="persona-attr-label">Revenue</span><span class="persona-attr-val">${p.rev}</span></div>
-              <div class="persona-attr"><span class="persona-attr-label">Tech Stack</span><span class="persona-attr-val">${p.stack}</span></div>
+              <div class="persona-attr"><span class="persona-attr-label">Positioning</span><span class="persona-attr-val">${p.co}</span></div>
+              <div class="persona-attr"><span class="persona-attr-label">Mandate</span><span class="persona-attr-val">${p.rev}</span></div>
+              <div class="persona-attr"><span class="persona-attr-label">Stack</span><span class="persona-attr-val">${p.stack}</span></div>
               <div class="persona-attr"><span class="persona-attr-label">Trigger</span><span class="persona-attr-val" style="color: var(--accent-dark)">${p.trig}</span></div>
-              <div class="persona-attr"><span class="persona-attr-label">Core Pain</span><span class="persona-attr-val">${p.pain}</span></div>
+              <div class="persona-attr"><span class="persona-attr-label">Core Fear</span><span class="persona-attr-val">${p.pain}</span></div>
             </div>
           `).join('')}
+        </div>
+        <div class="info-strip fade-in d2" style="margin-top:20px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div><strong>What both share:</strong> proprietary outreach <em>should</em> matter; they aren't buying "lead gen"; they need execution more than concepts; they refuse domain burnout and amateur mistakes.</div>
         </div>
       `,
       qual: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          <div><strong>Every account scored</strong> on fit + intent. Score &lt; 60 is auto-disqualified.</div>
+          <div><strong>Every target scored</strong> on investment criteria. Score &lt; 60 = auto-exclude. Not "customers" — companies that fit check size, thesis, and ownership reality.</div>
         </div>
         <div class="matrix fade-in d1">
           <div class="matrix-cell h">Criterion</div>
-          <div class="matrix-cell h" style="text-align:center;">ICP-A</div>
-          <div class="matrix-cell h" style="text-align:center;">ICP-B</div>
-          <div class="matrix-cell h" style="text-align:center;">ICP-C</div>
+          <div class="matrix-cell h" style="text-align:center;">Target A</div>
+          <div class="matrix-cell h" style="text-align:center;">Target B</div>
+          <div class="matrix-cell h" style="text-align:center;">Target C</div>
           <div class="matrix-cell h" style="text-align:center;">Weight</div>
           ${[
-            ['Employee range (25–500)', 1,1,1, '15'],
-            ['Revenue ($2M–$25M ARR)', 1,1,0, '20'],
-            ['Geography (NA / EU)', 1,1,1, '10'],
-            ['Technographic match', 1,0,1, '15'],
-            ['Funding event (12mo)', 1,1,0, '10'],
-            ['Hiring signal (GTM roles)', 1,0,1, '15'],
-            ['Decision-maker reachable', 1,1,1, '15']
+            ['Revenue / EBITDA band (check size)', 1,1,0, '20'],
+            ['Sector thesis fit', 1,1,1, '20'],
+            ['Geography / regulatory comfort', 1,1,1, '10'],
+            ['Ownership type (founder / family / carve-out)', 1,0,1, '15'],
+            ['Not in known competing process', 1,1,0, '15'],
+            ['Succession / transition signal', 1,0,1, '10'],
+            ['Decision-maker reachable (owner / CEO)', 1,1,1, '10']
           ].map(([l,a,b,c,w]) => `
             <div class="matrix-cell label">${l}</div>
             <div class="matrix-cell ${a?'tick':'x'}">${a?'✓':'—'}</div>
@@ -1603,89 +1606,89 @@ const PAGES = {
             <div class="matrix-cell" style="text-align:center; font-family:'JetBrains Mono', monospace; color:var(--text-mute);">${w}</div>
           `).join('')}
           <div class="matrix-cell label" style="font-weight:700; background:var(--surface);">Composite Fit Score</div>
-          <div class="matrix-cell tick" style="background:var(--surface); font-family:'JetBrains Mono', monospace; font-weight:700;">96</div>
-          <div class="matrix-cell" style="background:var(--surface); text-align:center; font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--warn);">71</div>
-          <div class="matrix-cell" style="background:var(--surface); text-align:center; font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--accent-2);">82</div>
+          <div class="matrix-cell tick" style="background:var(--surface); font-family:'JetBrains Mono', monospace; font-weight:700;">94</div>
+          <div class="matrix-cell" style="background:var(--surface); text-align:center; font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--warn);">68</div>
+          <div class="matrix-cell" style="background:var(--surface); text-align:center; font-family:'JetBrains Mono', monospace; font-weight:700; color:var(--accent-2);">81</div>
           <div class="matrix-cell" style="background:var(--surface); text-align:center; font-family:'JetBrains Mono', monospace; color:var(--text-mute);">/100</div>
         </div>
       `,
       pipeline: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v6H4zM4 14h16v6H4z"/><path d="M8 8h.01M8 18h.01"/></svg>
-          <div><strong>AptAI Lead Gen Pipeline</strong> — orchestrated end-to-end in Deep Line. Sources flow through a waterfall enrichment stack, then our AI scoring agent.</div>
+          <div><strong>Proprietary target pipeline</strong> — market map → waterfall enrichment → AI thesis-fit scoring. Output: ranked accounts ready for sourcing cadence.</div>
         </div>
         <div class="pipeline fade-in d1">
           <div class="pipe-row">
             <div class="pipe-stage">
               <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-              <h4>Source</h4>
-              <p>AI Arc, Sales Nav, Apollo, custom intent signals</p>
+              <h4>Map</h4>
+              <p>Sector lists, Sales Nav, proprietary databases, broker intel, succession signals</p>
             </div>
             <div class="pipe-arrow">→</div>
             <div class="pipe-stage">
               <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="3.27" y1="6.96" x2="12" y2="12.01"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
-              <h4>Enrich (Waterfall)</h4>
-              <p>Blitz API + FindEmail + waterfall providers — email, phone, tech, funding</p>
+              <h4>Enrich</h4>
+              <p>Owner/CEO identity, email, ownership type, size proxies, funding/news, process flags</p>
             </div>
             <div class="pipe-arrow">→</div>
             <div class="pipe-stage">
               <div class="pipe-stage-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-              <h4>AI Score + Dedupe</h4>
-              <p>Fit + intent scoring, blacklist scrub, role-mapping</p>
+              <h4>Score + Suppress</h4>
+              <p>Thesis fit, exclusion lists, CRM dedupe, competing-process scrub</p>
             </div>
           </div>
           <div class="pipe-arrow-down">↓</div>
           <div class="pipe-stage pipe-final">
             <div class="pipe-stage-icon" style="background:rgba(0,207,192,0.15); color: var(--success-dark);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 4 12 14.01 9 11.01"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-            <h4>Campaign-Ready</h4>
-            <p>Tiered, segmented, personalization-snippets attached</p>
+            <h4>Sourcing-Ready</h4>
+            <p>Tiered, segmented, approach-asset variables attached</p>
           </div>
         </div>
 
         <div class="grid grid-4 fade-in d2" style="margin-top:24px;">
-          <div class="card"><div class="stat-label">Raw Sourced</div><div class="stat" style="color:var(--text-mute)">14,820</div><div class="stat-trend up">+12% vs prior cohort</div></div>
-          <div class="card"><div class="stat-label">Enriched</div><div class="stat" style="color:var(--accent-2)">11,206</div><div class="stat-trend up">75.6% enrichment rate</div></div>
-          <div class="card"><div class="stat-label">Scored ≥ 60</div><div class="stat" style="color: var(--accent-dark)">4,318</div><div class="stat-trend up">38.5% qualified</div></div>
-          <div class="card"><div class="stat-label">Campaign Ready</div><div class="stat" style="color: var(--success-dark)">3,950</div><div class="stat-trend up">91.5% deliverability</div></div>
+          <div class="card"><div class="stat-label">Raw mapped</div><div class="stat" style="color:var(--text-mute)">12,400</div><div class="stat-trend up">Thesis sectors only</div></div>
+          <div class="card"><div class="stat-label">Enriched</div><div class="stat" style="color:var(--accent-2)">8,910</div><div class="stat-trend up">71.9% enrichment</div></div>
+          <div class="card"><div class="stat-label">Scored ≥ 60</div><div class="stat" style="color: var(--accent-dark)">2,840</div><div class="stat-trend up">Mandate-fit pool</div></div>
+          <div class="card"><div class="stat-label">Sourcing ready</div><div class="stat" style="color: var(--success-dark)">2,410</div><div class="stat-trend up">Owner-reachable</div></div>
         </div>
       `,
       tiers: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <div><strong>Signal-based tiers.</strong> T1 gets manual senior touch; T2/T3 ride automated sequences.</div>
+          <div><strong>Signal-based coverage.</strong> T1 gets senior / partner-level touch; T2/T3 ride automated proprietary cadence.</div>
         </div>
         <div class="grid grid-3 fade-in d1">
           <div class="tier-card t1">
             <span class="tier-badge">TIER 1 · HOT</span>
-            <div class="tier-stat">412</div>
-            <div style="font-size:11px; color:var(--text-mute)">Manual SDR + executive cadence</div>
+            <div class="tier-stat">214</div>
+            <div style="font-size:11px; color:var(--text-mute)">Partner + operator cadence</div>
             <div class="tier-signals">
-              <div class="tier-signal">Recent funding round (&lt;90 days)</div>
-              <div class="tier-signal">Active GTM/SDR job postings</div>
-              <div class="tier-signal">New VP Sales / CMO hire</div>
-              <div class="tier-signal">Visited high-intent pages</div>
-              <div class="tier-signal">Tech stack overlap ≥ 3 signals</div>
+              <div class="tier-signal">Clear succession / age-out signal</div>
+              <div class="tier-signal">Exact thesis + size band match</div>
+              <div class="tier-signal">No known auction / banker process</div>
+              <div class="tier-signal">Owner identity confirmed</div>
+              <div class="tier-signal">High continuity / value-driver fit</div>
             </div>
           </div>
           <div class="tier-card t2">
             <span class="tier-badge">TIER 2 · WARM</span>
-            <div class="tier-stat">1,386</div>
+            <div class="tier-stat">896</div>
             <div style="font-size:11px; color:var(--text-mute)">Automated multi-touch + LinkedIn</div>
             <div class="tier-signals">
-              <div class="tier-signal">Recent leadership change</div>
-              <div class="tier-signal">Headcount growth ≥ 10% (6mo)</div>
-              <div class="tier-signal">Competitor stack detected</div>
-              <div class="tier-signal">Active on LinkedIn / podcast</div>
+              <div class="tier-signal">Strong firmographic fit</div>
+              <div class="tier-signal">Leadership change or growth signal</div>
+              <div class="tier-signal">Possible carve-out / division sale</div>
+              <div class="tier-signal">Advisor / broker soft path</div>
             </div>
           </div>
           <div class="tier-card t3">
             <span class="tier-badge">TIER 3 · NURTURE</span>
-            <div class="tier-stat">2,152</div>
-            <div style="font-size:11px; color:var(--text-mute)">Lighter cadence · seasonal repassing</div>
+            <div class="tier-stat">1,300</div>
+            <div style="font-size:11px; color:var(--text-mute)">Lighter cadence · seasonal repass</div>
             <div class="tier-signals">
-              <div class="tier-signal">Fits firmographic profile</div>
-              <div class="tier-signal">Awaiting trigger event</div>
-              <div class="tier-signal">Cold-start cohort</div>
+              <div class="tier-signal">Fits map, no hard trigger yet</div>
+              <div class="tier-signal">Long-hold relationship seed</div>
+              <div class="tier-signal">Cold-start coverage cohort</div>
             </div>
           </div>
         </div>
@@ -1694,21 +1697,21 @@ const PAGES = {
   },
 
   infra: {
-    crumb: ['Week 0', 'Foundation', 'Outbound Infrastructure'],
-    title: 'Outbound Infrastructure Build',
-    desc: 'The sending stack — domains, AI personalization, and reply engine — live before launch.',
+    crumb: ['Week 0', 'Foundation', 'Origination Infrastructure'],
+    title: 'Origination Infrastructure Build',
+    desc: 'Sending stack, approach-asset automation, CRM sync, and reply triage — live before first coverage wave.',
     pill: 'Phase 03 / Foundation',
     subtabs: [
       { id: 'domains', label: 'Email / Domain Setup' },
-      { id: 'ai', label: 'AI Automation Layer' },
-      { id: 'platform', label: 'Platform (Instantly + CRM)' },
-      { id: 'reply', label: 'AI Reply Engine' }
+      { id: 'ai', label: 'AI + Approach Assets' },
+      { id: 'platform', label: 'Platform (Sequencer + CRM)' },
+      { id: 'reply', label: 'Reply & Opportunity Engine' }
     ],
     sub: {
       domains: () => `
         <div class="kpi-row fade-in">
           <div class="kpi"><div class="kpi-label">Sender Stacks</div><div class="kpi-val">3</div><div class="kpi-foot">SMTP · Google · Microsoft</div></div>
-          <div class="kpi b2"><div class="kpi-label">Live Mailboxes</div><div class="kpi-val">395</div><div class="kpi-foot">5×49 + 30×5 + reserve</div></div>
+          <div class="kpi b2"><div class="kpi-label">Live Mailboxes</div><div class="kpi-val">395</div><div class="kpi-foot">Never burn the primary domain</div></div>
           <div class="kpi b3"><div class="kpi-label">Avg. Deliverability</div><div class="kpi-val">97.8%</div><div class="kpi-foot">Last 14 days</div></div>
           <div class="kpi b4"><div class="kpi-label">Warmup Status</div><div class="kpi-val">100%</div><div class="kpi-foot">All inboxes thermal</div></div>
         </div>
@@ -1717,7 +1720,7 @@ const PAGES = {
           <div style="padding: 18px 20px; border-bottom: 1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
             <div>
               <h3 style="font-size:14px; margin-bottom:2px;">Domain Health Monitor</h3>
-              <p style="font-size:12px; color:var(--text-mute);">Per-domain deliverability, DNS posture, and inbox temperature</p>
+              <p style="font-size:12px; color:var(--text-mute);">Protect reputation — PE buyers cannot afford spam-folder sourcing</p>
             </div>
             <button class="btn">Refresh</button>
           </div>
@@ -1725,13 +1728,13 @@ const PAGES = {
             <div>Domain</div><div>Provider</div><div>SPF</div><div>DKIM</div><div>DMARC</div><div>Health</div><div>Status</div>
           </div>
           ${[
-            ['acmehq.io','Google · 5 mbx','google',97,'live'],
-            ['acmehq.co','Google · 5 mbx','google',95,'live'],
-            ['get-acme.com','Google · 5 mbx','google',98,'live'],
-            ['try-acme.io','Google · 5 mbx','google',92,'live'],
-            ['acme-mail.com','SMTP · 49 mbx','smtp',96,'live'],
+            ['origin-acme.io','Google · 5 mbx','google',97,'live'],
+            ['acme-origin.co','Google · 5 mbx','google',95,'live'],
+            ['get-acme-ma.com','Google · 5 mbx','google',98,'live'],
+            ['try-acme-deals.io','Google · 5 mbx','google',92,'live'],
+            ['acme-sourcing.com','SMTP · 49 mbx','smtp',96,'live'],
             ['acme-outreach.io','SMTP · 49 mbx','smtp',99,'live'],
-            ['hello-acme.co','MS365 · 5 mbx','ms',88,'warming']
+            ['hello-acme-ma.co','MS365 · 5 mbx','ms',88,'warming']
           ].map(([d,p,prov,h,s]) => `
             <div class="domain-row">
               <div class="domain-name"><div class="favicon">${d[0].toUpperCase()}</div>${d}</div>
@@ -1747,149 +1750,111 @@ const PAGES = {
 
         <div class="info-strip fade-in d2" style="margin-top:24px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <div><strong>3 redundant sender stacks.</strong> SMTP carries volume, Google handles high-trust, Microsoft is reserve.</div>
+          <div><strong>3 redundant stacks.</strong> Volume on SMTP, high-trust on Google, Microsoft as reserve — primary firm domain stays clean.</div>
         </div>
       `,
       ai: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          <div><strong>AI automation</strong> handles what breaks at scale — cleaning, personalization, and per-prospect copy.</div>
+          <div><strong>Approach asset + personalization</strong> — free value before any ask. Never a valuation bait. Never a calendar-first CTA.</div>
         </div>
         <div class="ai-flow fade-in d1">
           <div class="flow-step">
             <div class="flow-num">01</div>
             <h4>List Hygiene</h4>
-            <p>Email verification, role-title normalization, dedupe against CRM, suppression and risky-domain scrub.</p>
+            <p>Owner identity verification, role map, CRM dedupe, suppression of active opportunities and banker processes.</p>
           </div>
           <div class="flow-step">
             <div class="flow-num">02</div>
-            <h4>Context Mining</h4>
-            <p>LinkedIn, company site, podcast, recent press, funding, hiring — vectorized into a per-lead context blob.</p>
+            <h4>Thesis Context</h4>
+            <p>Sector angle, ownership clues, succession/news, operating leverage — only when genuinely relevant.</p>
           </div>
           <div class="flow-step">
             <div class="flow-num">03</div>
-            <h4>AI Personalization</h4>
-            <p>Per-lead opener generation against your offer + ICP angle. 4 variants scored for relevance / brevity.</p>
+            <h4>Approach Asset</h4>
+            <p><strong>Ownership Fit &amp; Value-Driver Brief</strong> — one-page confidential relevance note (not LOI, not valuation).</p>
           </div>
           <div class="flow-step">
             <div class="flow-num">04</div>
             <h4>QA + Push</h4>
-            <p>Spam-score check, length cap, sanity QA → push to Instantly with sender + variant + tier assignment.</p>
+            <p>Tone: transparent acquisition intent + low-pressure next step. Spam check → sequencer with tier assignment.</p>
+          </div>
+        </div>
+
+        <div class="card fade-in d2" style="margin-top:24px;">
+          <h3 style="font-size:14px; margin-bottom:8px;">Front-end offer (already proven in market)</h3>
+          <p style="font-size:13px; color:var(--text-mute); line-height:1.55; margin-bottom:12px;">A confidential one-pager showing why the business may be relevant to the acquirer, visible characteristics an informed buyer would want to understand, and continuity / growth / value questions worth exploring. Delivered within two business days after a simple "yes."</p>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="badge green">CTA: "Would it be useful if I sent that over?"</span>
+            <span class="badge yellow">Never asks for calendar first</span>
+            <span class="badge green">Closes on confidential next conversation</span>
           </div>
         </div>
 
         <div class="grid grid-3 fade-in d2" style="margin-top:24px;">
           <div class="card">
-            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div class="card-title">Verified Emails</div>
-            <div class="stat" style="font-size:24px; color: var(--success-dark);">98.4%</div>
-            <p style="color:var(--text-mute); font-size:11px;">After 3-pass verification</p>
+            <div class="card-title">Verified owner emails</div>
+            <div class="stat" style="font-size:24px; color: var(--success-dark);">97.1%</div>
+            <p style="color:var(--text-mute); font-size:11px;">After multi-pass verification</p>
           </div>
           <div class="card">
-            <div class="card-icon" style="background:rgba(4,86,96,0.1); color:var(--accent-2);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
-            <div class="card-title">Avg. Personalization Score</div>
-            <div class="stat" style="font-size:24px; color:var(--accent-2);">8.7<span style="font-size:14px; color:var(--text-mute)">/10</span></div>
-            <p style="color:var(--text-mute); font-size:11px;">Per-prospect rubric (specificity, fit, brevity)</p>
+            <div class="card-title">Avg. relevance score</div>
+            <div class="stat" style="font-size:24px; color:var(--accent-2);">8.4<span style="font-size:14px; color:var(--text-mute)">/10</span></div>
+            <p style="color:var(--text-mute); font-size:11px;">Specificity · fit · confidentiality</p>
           </div>
           <div class="card">
-            <div class="card-icon" style="background:rgba(110,106,99,0.1); color:var(--accent-3);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-            <div class="card-title">Per-Lead Process Time</div>
-            <div class="stat" style="font-size:24px; color:var(--accent-3);">4.2s</div>
-            <p style="color:var(--text-mute); font-size:11px;">vs. ~6min manual baseline</p>
+            <div class="card-title">Per-target process</div>
+            <div class="stat" style="font-size:24px; color:var(--accent-3);">5.1s</div>
+            <p style="color:var(--text-mute); font-size:11px;">vs. 15–30 min manual research</p>
           </div>
         </div>
       `,
       platform: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          <div><strong>Instantly handles sending.</strong> Your CRM stays in sync both ways.</div>
+          <div><strong>Sequencer handles coverage.</strong> CRM stays the system of record for opportunities and thesis scores.</div>
         </div>
         <div class="integrations fade-in d1">
-          <div class="integration">
-            <div class="int-logo" style="background:#0ea5e9">⚡</div>
-            <div>
-              <div class="int-name">Instantly</div>
-              <div class="int-meta">Sending · routing · warmup</div>
+          ${[
+            ['#0ea5e9','⚡','Instantly / Smartlead','Sourcing cadence · warmup · routing'],
+            ['#00a1e0','SF','Salesforce CRM','Accounts · opps · financials · scores'],
+            ['#a78bfa','B','Blitz / enrichment','Owner identity waterfall'],
+            ['#2dd4bf','D','Deep Line','GTM/origination orchestration'],
+            ['#0a66c2','in','LinkedIn Sales Nav','Map · signals · warm paths'],
+            ['#22c55e','S','Slack','Actionable-reply alerts'],
+            ['#0a66c2','H','HeyReach','LinkedIn coverage layer'],
+            ['#3b82f6','M','MS365 / Google','Dedicated sender stacks']
+          ].map(([bg,ic,n,m]) => `
+            <div class="integration">
+              <div class="int-logo" style="background:${bg}">${ic}</div>
+              <div>
+                <div class="int-name">${n}</div>
+                <div class="int-meta">${m}</div>
+              </div>
+              <span class="int-status">Connected</span>
             </div>
-            <span class="int-status">Connected</span>
-          </div>
-          <div class="integration">
-            <div class="int-logo" style="background:#ff7a59">H</div>
-            <div>
-              <div class="int-name">HubSpot CRM</div>
-              <div class="int-meta">Pipeline · contact sync</div>
-            </div>
-            <span class="int-status">Connected</span>
-          </div>
-          <div class="integration">
-            <div class="int-logo" style="background:#a78bfa">B</div>
-            <div>
-              <div class="int-name">Blitz API</div>
-              <div class="int-meta">Enrichment waterfall</div>
-            </div>
-            <span class="int-status">Connected</span>
-          </div>
-          <div class="integration">
-            <div class="int-logo" style="background:#2dd4bf">D</div>
-            <div>
-              <div class="int-name">Deep Line</div>
-              <div class="int-meta">GTM orchestration</div>
-            </div>
-            <span class="int-status">Connected</span>
-          </div>
-          <div class="integration">
-            <div class="int-logo" style="background:#0a66c2">in</div>
-            <div>
-              <div class="int-name">LinkedIn Sales Nav</div>
-              <div class="int-meta">Sourcing · signals</div>
-            </div>
-            <span class="int-status">Connected</span>
-          </div>
-          <div class="integration">
-            <div class="int-logo" style="background:#22c55e">S</div>
-            <div>
-              <div class="int-name">Slack</div>
-              <div class="int-meta">Hot-lead alerts</div>
-            </div>
-            <span class="int-status">Connected</span>
-          </div>
-          <div class="integration">
-            <div class="int-logo" style="background:#ef4444">G</div>
-            <div>
-              <div class="int-name">Gmail / Workspace</div>
-              <div class="int-meta">30 × 5 sender stack</div>
-            </div>
-            <span class="int-status">Connected</span>
-          </div>
-          <div class="integration">
-            <div class="int-logo" style="background:#3b82f6">M</div>
-            <div>
-              <div class="int-name">MS365</div>
-              <div class="int-meta">Reserve · rotation</div>
-            </div>
-            <span class="int-status">Connected</span>
-          </div>
+          `).join('')}
         </div>
 
         <div class="card fade-in d2" style="margin-top:24px;">
-          <h3 style="font-size:14px; margin-bottom:12px;">Bidirectional Sync Map</h3>
+          <h3 style="font-size:14px; margin-bottom:12px;">Bidirectional CRM Map</h3>
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
             <div>
               <div style="font-size: 11px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; font-weight:600;">→ To CRM</div>
               <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--text-mute);">
-                <div>· Reply intent classification</div>
-                <div>· Open / click / meeting events</div>
-                <div>· Sequence stage + tier</div>
-                <div>· Hot-lead flag + handoff note</div>
+                <div>· Reply intent (owner / broker / pass)</div>
+                <div>· Cadence stage + tier</div>
+                <div>· Approach-asset sent flag</div>
+                <div>· Actionable conversation handoff</div>
               </div>
             </div>
             <div>
               <div style="font-size: 11px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:10px; font-weight:600;">← From CRM</div>
               <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--text-mute);">
-                <div>· Suppression list (closed/lost, customer)</div>
-                <div>· Deal stage changes (pause sequence)</div>
+                <div>· Active opp / process suppression</div>
+                <div>· Thesis score overrides</div>
                 <div>· Owner reassignment</div>
-                <div>· Custom field overrides</div>
+                <div>· Closed / lost / do-not-contact</div>
               </div>
             </div>
           </div>
@@ -1898,34 +1863,34 @@ const PAGES = {
       reply: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <div><strong>Every inbound reply</strong> is classified and routed. Nothing sits in an inbox.</div>
+          <div><strong>Every inbound reply</strong> is classified. Warm sellers cool fast — next action must be obvious before deal-team time is spent.</div>
         </div>
 
-        <h3 style="font-size:13px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:12px;">Last 7 Days — 312 Replies Classified</h3>
+        <h3 style="font-size:13px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:12px;">Last 7 Days — 184 Replies Classified</h3>
         <div class="classifier fade-in d1">
           <div class="class-bucket interested">
-            <div class="class-label">Interested</div>
-            <div class="class-count" style="color: var(--success-dark);">47</div>
-            <div style="font-size:11px; color:var(--text-mute)">Auto-book · meeting link</div>
+            <div class="class-label">Actionable</div>
+            <div class="class-count" style="color: var(--success-dark);">31</div>
+            <div style="font-size:11px; color:var(--text-mute)">Call / brief / NDA path</div>
           </div>
           <div class="class-bucket question">
-            <div class="class-label">Question</div>
-            <div class="class-count" style="color:var(--accent-2);">68</div>
-            <div style="font-size:11px; color:var(--text-mute)">AI draft + human send</div>
+            <div class="class-label">Curious / Q</div>
+            <div class="class-count" style="color:var(--accent-2);">44</div>
+            <div style="font-size:11px; color:var(--text-mute)">Send brief · human send</div>
           </div>
           <div class="class-bucket oof">
-            <div class="class-label">OOF / Defer</div>
-            <div class="class-count" style="color:var(--warn);">39</div>
-            <div style="font-size:11px; color:var(--text-mute)">Pause + reschedule</div>
+            <div class="class-label">Broker / intro</div>
+            <div class="class-count" style="color:var(--warn);">28</div>
+            <div style="font-size:11px; color:var(--text-mute)">Route + track</div>
           </div>
           <div class="class-bucket objection">
-            <div class="class-label">Objection</div>
-            <div class="class-count" style="color:var(--danger);">58</div>
-            <div style="font-size:11px; color:var(--text-mute)">Handle + nurture</div>
+            <div class="class-label">Not now / pass</div>
+            <div class="class-count" style="color:var(--danger);">41</div>
+            <div style="font-size:11px; color:var(--text-mute)">Nurture or suppress</div>
           </div>
           <div class="class-bucket unsub">
-            <div class="class-label">Unsubscribe</div>
-            <div class="class-count" style="color:var(--text-mute);">100</div>
+            <div class="class-label">Hard no</div>
+            <div class="class-count" style="color:var(--text-mute);">40</div>
             <div style="font-size:11px; color:var(--text-mute)">Suppressed</div>
           </div>
         </div>
@@ -1934,11 +1899,11 @@ const PAGES = {
           <div class="live-feed">
             <h3 style="font-size:13px; margin-bottom:12px; display:flex; align-items:center; gap:8px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%; box-shadow:0 0 6px var(--success); animation: pulse 1.6s infinite"></span>Live Reply Feed</h3>
             ${[
-              ['g','Sarah K. · CMO @ Lattice', 'Classified INTERESTED · meeting link sent', '2m ago'],
-              ['b','Mark D. · VP Sales @ Pylon', 'Classified QUESTION · AI drafted reply ready for review', '4m ago'],
-              ['y','Jenna R. · Head of Ops @ Vanta', 'Classified OOF · sequence paused until Apr 22', '8m ago'],
-              ['g','Carlos P. · COO @ Mercury', 'Classified INTERESTED · auto-handoff to AE', '14m ago'],
-              ['y','Daniel L. · GTM @ Ramp', 'Classified OBJECTION · pricing — nurture seq B', '22m ago']
+              ['g','Owner · specialty mfg · Midwest', 'ACTIONABLE · brief accepted · call proposed', '3m ago'],
+              ['b','CEO · B2B services', 'CURIOUS · wants confidential context first', '9m ago'],
+              ['y','Advisor · family office intro', 'BROKER PATH · routed to deal team', '18m ago'],
+              ['g','Founder · tech-enabled services', 'ACTIONABLE · management meeting week of', '41m ago'],
+              ['y','Owner · healthcare services', 'NOT NOW · succession 18–24 mo · nurture', '1h ago']
             ].map(([d,who,what,when]) => `
               <div class="feed-item">
                 <div class="feed-dot ${d}"></div>
@@ -1950,19 +1915,13 @@ const PAGES = {
             `).join('')}
           </div>
           <div class="card">
-            <h3 style="font-size:13px; margin-bottom:4px;">Classifier Accuracy</h3>
-            <p style="font-size:12px; color:var(--text-mute); margin-bottom:18px;">Validated against human-labeled sample, trailing 30 days</p>
-            <div style="display:flex; flex-direction:column; gap:12px;">
-              ${[
-                ['Interested',98],['Question',94],['OOF / Defer',97],['Objection',91],['Unsubscribe',100]
-              ].map(([n,p]) => `
-                <div>
-                  <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
-                    <span>${n}</span><span style="font-family:'JetBrains Mono', monospace; color: var(--accent-dark);">${p}%</span>
-                  </div>
-                  <div class="health-bar"><div class="health-bar-fill" style="width:${p}%"></div></div>
-                </div>
-              `).join('')}
+            <h3 style="font-size:13px; margin-bottom:4px;">What kills trust instantly</h3>
+            <p style="font-size:12px; color:var(--text-mute); margin-bottom:14px;">Origination-specific failure modes we design against</p>
+            <div style="display:flex; flex-direction:column; gap:8px; font-size:12px; color:var(--text-mute);">
+              <div>· Generic "partnership" language that hides buy intent</div>
+              <div>· Unsupported portfolio / capital claims</div>
+              <div>· Duplicate outreach to an active process</div>
+              <div>· Reporting sends/opens instead of real conversations</div>
             </div>
           </div>
         </div>
@@ -1971,37 +1930,37 @@ const PAGES = {
   },
 
   launch: {
-    crumb: ['Week 2', 'Activation', 'Launch Campaigns'],
-    title: 'Launch Campaigns',
-    desc: 'Pre-flight checks, coordinated waves, and a 7-day volume ramp to peak send.',
-    pill: 'Phase 04 / Activation',
+    crumb: ['Week 2', 'Coverage', 'Activate Sourcing'],
+    title: 'Activate Sourcing Cadence',
+    desc: 'Pre-flight, staggered coverage waves, and a controlled ramp — proprietary outreach without burning reputation.',
+    pill: 'Phase 04 / Coverage',
     pillColor: 'var(--accent-2)',
     subtabs: [
       { id: 'prelaunch', label: 'Pre-Launch Checklist' },
-      { id: 'coord', label: 'Campaign Coordination' },
+      { id: 'coord', label: 'Coverage Coordination' },
       { id: 'rampup', label: 'Launch & Ramp-Up' }
     ],
     sub: {
       prelaunch: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          <div><strong>12-point pre-flight</strong> before a single send.</div>
+          <div><strong>12-point pre-flight</strong> before first proprietary send.</div>
         </div>
 
         <div class="checklist fade-in d1">
           ${[
-            ['done','Inbox placement test (GlockApps)','Avg. inbox: 92% · Tabs: 4% · Spam: 4%','green','PASS'],
-            ['done','Spam-trigger word audit','0 high-risk · 2 medium (reviewed)','green','PASS'],
-            ['done','DNS posture re-verified','SPF · DKIM · DMARC p=reject on all sending domains','green','PASS'],
-            ['done','MX records validated','All domains routing correctly','green','PASS'],
-            ['done','Warmup level confirmed','All 395 mailboxes at ≥ 100% thermal','green','PASS'],
-            ['done','Daily send limit per mailbox','Cap: 35/day · ramp from 5','green','SET'],
-            ['done','Sender rotation logic','Round-robin across 3 stacks · weighted by health','green','PASS'],
-            ['done','Suppression list synced','12,419 records loaded from CRM','green','PASS'],
-            ['done','Reply-engine routing tested','Slack alerts wired to #pipeline-hot','green','PASS'],
-            ['done','Tracking domain configured','clk.acme-mail.com · SSL valid','green','PASS'],
-            ['done','Unsubscribe link verified','One-click compliant · CAN-SPAM / GDPR','green','PASS'],
-            ['done','Approval from client','Copy + targeting signed off','green','APPROVED']
+            ['done','Inbox placement test','Avg. inbox: 92% · Spam: 4%','green','PASS'],
+            ['done','Acquisition-tone audit','No valuation bait · transparent intent','green','PASS'],
+            ['done','DNS posture re-verified','SPF · DKIM · DMARC on all senders','green','PASS'],
+            ['done','CRM suppression sync','Active opps + DNC loaded','green','PASS'],
+            ['done','Warmup confirmed','All mailboxes thermal ≥ 100%','green','PASS'],
+            ['done','Daily cap per mailbox','Start 5 → ramp to policy max','green','SET'],
+            ['done','Approach asset QA','Ownership Fit brief template locked','green','PASS'],
+            ['done','Buyer positioning locked','Successor-operator vs platform voice','green','PASS'],
+            ['done','Reply routing tested','Slack → origination owner','green','PASS'],
+            ['done','Competing-process scrub','Known banker processes excluded','green','PASS'],
+            ['done','Unsubscribe / opt-out path','Compliant + reputation-safe','green','PASS'],
+            ['done','Client approval','Criteria + copy + tiers signed off','green','APPROVED']
           ].map(([s,t,m,c,l]) => `
             <div class="check-item ${s}">
               <div class="check-box"></div>
@@ -2014,14 +1973,14 @@ const PAGES = {
       coord: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          <div><strong>Waves staggered</strong> to protect senders, with review gates baked in.</div>
+          <div><strong>Coverage waves staggered</strong> to protect senders, with review gates for reply quality — not vanity volume.</div>
         </div>
 
         <div class="calendar fade-in d1">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
             <div>
-              <div style="font-size:14px; font-weight:600;">Launch Window — May 2026</div>
-              <div style="font-size:12px; color:var(--text-mute);">3 campaigns · 4,318 leads · phased over 7 days</div>
+              <div style="font-size:14px; font-weight:600;">Coverage Window — May 2026</div>
+              <div style="font-size:12px; color:var(--text-mute);">3 cadences · 2,410 targets · phased over 7 days</div>
             </div>
             <div style="display:flex; gap:6px;">
               <button class="btn">← Prev</button>
@@ -2031,8 +1990,8 @@ const PAGES = {
           <div class="cal-grid">
             ${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d => `<div class="cal-head">${d}</div>`).join('')}
             ${[
-              ['11','',''],['12','Pre-flight','review'],['13','',''],['14','C1 LIVE',1],['15','C2 LIVE',1],['16','',''],['17','',''],
-              ['18','Reply audit',''],['19','C3 LIVE',1],['20','',''],['21','Optim',''],['22','',''],['23','',''],['24','',''],
+              ['11','',''],['12','Pre-flight','review'],['13','',''],['14','T1 LIVE',1],['15','T2 LIVE',1],['16','',''],['17','',''],
+              ['18','Reply audit',''],['19','T3 LIVE',1],['20','',''],['21','Optim',''],['22','',''],['23','',''],['24','',''],
               ['25','Variant B',1],['26','',''],['27','Mid-review',''],['28','',''],['29','',''],['30','',''],['31','','']
             ].map(([n,e,active]) => `
               <div class="cal-day ${active?'active':''}">
@@ -2046,49 +2005,40 @@ const PAGES = {
         <div class="grid grid-3 fade-in d2" style="margin-top:24px;">
           <div class="card">
             <span class="card-tag" style="background: rgba(0,207,192,0.15); color: var(--accent-dark); border-color: rgba(0,207,192,0.25);">LIVE</span>
-            <div class="card-title">C1 — T1 Hot · Founder Send</div>
-            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">412 leads · Mon May 14</div>
-            <div style="display:flex; gap:12px; font-size:11px;">
-              <span style="color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">5-touch</span></span>
-              <span style="color:var(--text-mute);">Owner: <span style="color:var(--text);">Avi</span></span>
-            </div>
+            <div class="card-title">C1 — T1 Hot · Partner Send</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">214 targets · Mon May 14</div>
+            <div style="font-size:11px; color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">5-touch</span> · Approach asset on reply</div>
           </div>
           <div class="card">
             <span class="card-tag" style="background: rgba(0,207,192,0.15); color: var(--accent-dark); border-color: rgba(0,207,192,0.25);">LIVE</span>
             <div class="card-title">C2 — T2 Warm · Multi-Touch</div>
-            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">1,386 leads · Tue May 15</div>
-            <div style="display:flex; gap:12px; font-size:11px;">
-              <span style="color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">7-touch</span></span>
-              <span style="color:var(--text-mute);">Owner: <span style="color:var(--text);">SDR Pod</span></span>
-            </div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">896 targets · Tue May 15</div>
+            <div style="font-size:11px; color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">7-touch</span> · LinkedIn assist</div>
           </div>
           <div class="card">
             <span class="card-tag" style="background: rgba(4,86,96,0.15); color: var(--accent-2); border-color: rgba(4,86,96,0.25);">SCHEDULED</span>
-            <div class="card-title">C3 — T3 Nurture · Light Cadence</div>
-            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">2,152 leads · Mon May 19</div>
-            <div style="display:flex; gap:12px; font-size:11px;">
-              <span style="color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">4-touch</span></span>
-              <span style="color:var(--text-mute);">Owner: <span style="color:var(--text);">Automation</span></span>
-            </div>
+            <div class="card-title">C3 — T3 Nurture · Light Coverage</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:8px;">1,300 targets · Mon May 19</div>
+            <div style="font-size:11px; color:var(--text-mute);">Cadence: <span style="color:var(--text); font-family:'JetBrains Mono', monospace;">4-touch</span> · Long-hold seed</div>
           </div>
         </div>
       `,
       rampup: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-          <div><strong>7-day ramp.</strong> Caps step up from 5 to 35/mailbox while we watch bounce and reply rates.</div>
+          <div><strong>7-day ramp.</strong> Caps step up while we watch bounce, spam, and <em>actionable</em> reply quality — not open vanity.</div>
         </div>
 
         <div class="card chart-card fade-in d1">
           <div class="chart-title">Daily Send Volume — Ramp-Up Curve</div>
-          <div class="chart-sub">Aggregate across all 395 mailboxes · monitored against bounce / spam thresholds</div>
+          <div class="chart-sub">Aggregate across sender stacks · monitored against bounce / spam thresholds</div>
           <div class="chart">
             <div class="chart-grid">
               <div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div>
             </div>
             ${[
-              ['D1','1,975',20],['D2','3,160',32],['D3','4,740',48],['D4','6,320',64],['D5','7,900',80],['D6','9,480',96],['D7','11,060',100],
-              ['D8','11,060',100],['D9','11,060',100],['D10','11,060',100],['D11','11,060',100],['D12','11,060',100],['D13','11,060',100],['D14','11,060',100]
+              ['D1','1,200',18],['D2','2,100',30],['D3','3,200',46],['D4','4,400',62],['D5','5,600',78],['D6','6,800',92],['D7','7,800',100],
+              ['D8','7,800',100],['D9','7,800',100],['D10','7,800',100],['D11','7,800',100],['D12','7,800',100],['D13','7,800',100],['D14','7,800',100]
             ].map(([d,v,h]) => `
               <div class="chart-bar" style="height:${h}%;">
                 <div class="value">${v}</div>
@@ -2099,42 +2049,42 @@ const PAGES = {
         </div>
 
         <div class="grid grid-4 fade-in d2" style="margin-top:36px;">
-          <div class="card"><div class="stat-label">Peak Daily Volume</div><div class="stat" style="color: var(--accent-dark);">11,060</div><div class="stat-trend up">735–1000+ per sender stack</div></div>
-          <div class="card"><div class="stat-label">Avg. Bounce Rate</div><div class="stat" style="color: var(--success-dark);">1.2%</div><div class="stat-trend up">Industry benchmark &lt;3%</div></div>
-          <div class="card"><div class="stat-label">Avg. Reply Rate</div><div class="stat" style="color:var(--accent-2);">4.8%</div><div class="stat-trend up">+0.6 pp vs. cohort baseline</div></div>
-          <div class="card"><div class="stat-label">Meetings Booked (W1)</div><div class="stat" style="color:var(--accent-3);">12</div><div class="stat-trend up">$240K combined ACV target</div></div>
+          <div class="card"><div class="stat-label">Peak Daily Volume</div><div class="stat" style="color: var(--accent-dark);">7,800</div><div class="stat-trend up">Controlled proprietary coverage</div></div>
+          <div class="card"><div class="stat-label">Avg. Bounce Rate</div><div class="stat" style="color: var(--success-dark);">1.1%</div><div class="stat-trend up">Industry benchmark &lt;3%</div></div>
+          <div class="card"><div class="stat-label">Actionable Reply %</div><div class="stat" style="color:var(--accent-2);">1.8%</div><div class="stat-trend up">Owner / advisor paths</div></div>
+          <div class="card"><div class="stat-label">Conversations (W1)</div><div class="stat" style="color:var(--accent-3);">9</div><div class="stat-trend up">Calls · briefs · intros</div></div>
         </div>
       `
     }
   },
 
   analytics: {
-    crumb: ['Week 4+', 'Optimization', 'Outbound Analytics'],
-    title: 'Outbound Analytics & Iteration',
-    desc: 'Live oversight, weekly reports, and iteration that compounds week over week.',
+    crumb: ['Week 4+', 'Optimization', 'Origination Analytics'],
+    title: 'Origination Analytics & Iteration',
+    desc: 'Live oversight, weekly sourcing reports, and experiments that compound — toward message-market fit.',
     pill: 'Phase 05 / Optimization',
     pillColor: 'var(--accent-3)',
     subtabs: [
-      { id: 'oversight', label: 'Campaign Oversight' },
+      { id: 'oversight', label: 'Coverage Oversight' },
       { id: 'reports', label: 'Weekly Reports' },
       { id: 'iterate', label: 'Iterations & A/B Tests' }
     ],
     sub: {
       oversight: () => `
         <div class="kpi-row fade-in">
-          <div class="kpi"><div class="kpi-label">Active Campaigns</div><div class="kpi-val">3</div><div class="kpi-foot">Across 3 tiers</div></div>
-          <div class="kpi b2"><div class="kpi-label">Leads in Sequence</div><div class="kpi-val">3,950</div><div class="kpi-foot">Avg. 5.2 touches each</div></div>
-          <div class="kpi b3"><div class="kpi-label">Hot Replies (7d)</div><div class="kpi-val">47</div><div class="kpi-foot">Pipeline: $940K</div></div>
-          <div class="kpi b4"><div class="kpi-label">Meetings Booked</div><div class="kpi-val">28</div><div class="kpi-foot">23.4% reply→meeting</div></div>
+          <div class="kpi"><div class="kpi-label">Active Cadences</div><div class="kpi-val">3</div><div class="kpi-foot">Across 3 tiers</div></div>
+          <div class="kpi b2"><div class="kpi-label">Targets in Sequence</div><div class="kpi-val">2,180</div><div class="kpi-foot">Avg. 5.1 touches</div></div>
+          <div class="kpi b3"><div class="kpi-label">Actionable (7d)</div><div class="kpi-val">31</div><div class="kpi-foot">Owner / advisor paths</div></div>
+          <div class="kpi b4"><div class="kpi-label">Conversations Booked</div><div class="kpi-val">18</div><div class="kpi-foot">Calls · mgmt mtgs · NDAs</div></div>
         </div>
 
         <div class="grid grid-2 fade-in d1">
           <div class="card chart-card">
-            <div class="chart-title">Reply Rate Trend — 4 Weeks</div>
-            <div class="chart-sub">Aggregated across active campaigns</div>
+            <div class="chart-title">Actionable Reply Trend — 4 Weeks</div>
+            <div class="chart-sub">Owner + advisor positive paths</div>
             <div class="chart">
               <div class="chart-grid"><div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div><div class="chart-grid-line"></div></div>
-              ${[['W1','3.2%',32],['W2','3.9%',48],['W3','4.4%',62],['W4','4.8%',78]].map(([d,v,h]) => `
+              ${[['W1','1.1%',28],['W2','1.4%',42],['W3','1.6%',58],['W4','1.8%',74]].map(([d,v,h]) => `
                 <div class="chart-bar" style="height:${h}%; background: linear-gradient(180deg, var(--accent-2), var(--accent));">
                   <div class="value">${v}</div>
                   <div class="label">${d}</div>
@@ -2144,13 +2094,13 @@ const PAGES = {
           </div>
 
           <div class="live-feed">
-            <h3 style="font-size:13px; margin-bottom:12px; display:flex; align-items:center; gap:8px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%; box-shadow:0 0 6px var(--success); animation: pulse 1.6s infinite"></span>Pipeline Pulse</h3>
+            <h3 style="font-size:13px; margin-bottom:12px; display:flex; align-items:center; gap:8px;"><span style="width:8px;height:8px;background:var(--success);border-radius:50%; box-shadow:0 0 6px var(--success); animation: pulse 1.6s infinite"></span>Origination Pulse</h3>
             ${[
-              ['g','Meeting booked: Sarah K. (Lattice, CMO)','Replied within 4h · auto-scheduled','Just now'],
-              ['b','Variant B (subject) +1.4pp reply lift','Auto-promoted to 60% traffic','6m ago'],
-              ['g','Meeting booked: Carlos P. (Mercury, COO)','Round 2 reply · AI handed off to AE','12m ago'],
-              ['y','Domain warning: acmehq.co reputation -3','Throttled; ms365 reserve absorbing','34m ago'],
-              ['g','Closed-won: $58K ACV (Pylon)','Source: C1 founder send, touch 2','2h ago']
+              ['g','Call booked: specialty mfg owner (Midwest)','Brief accepted · partner attending','Just now'],
+              ['b','Positioning variant B +0.4pp actionable','Successor-operator voice promoted','11m ago'],
+              ['g','Management meeting: B2B services founder','Round 2 · NDA prep','28m ago'],
+              ['y','Domain warning: origin-acme.io -2','Throttled; reserve stack absorbing','1h ago'],
+              ['g','Diligence path opened (anonymized)','Source: T1 partner cadence, touch 3','Yesterday']
             ].map(([d,what,extra,when]) => `
               <div class="feed-item">
                 <div class="feed-dot ${d}"></div>
@@ -2165,30 +2115,30 @@ const PAGES = {
 
         <div class="grid grid-3 fade-in d2" style="margin-top:24px;">
           <div class="card">
-            <div class="card-title">Campaign Performance · C1 Hot</div>
-            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">412 leads · 5-touch · founder send</div>
+            <div class="card-title">C1 Hot · Partner Send</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">214 targets · 5-touch</div>
             <div style="display:flex; flex-direction:column; gap:8px;">
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Open Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">68.2%</span></div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color: var(--accent-dark);">9.4%</span></div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Meetings</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">14</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">6.2%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Actionable</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color: var(--accent-dark);">3.4%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Conversations</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">11</span></div>
             </div>
           </div>
           <div class="card">
-            <div class="card-title">Campaign Performance · C2 Warm</div>
-            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">1,386 leads · 7-touch · automated</div>
+            <div class="card-title">C2 Warm · Multi-Touch</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">896 targets · 7-touch</div>
             <div style="display:flex; flex-direction:column; gap:8px;">
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Open Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">52.8%</span></div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color:var(--accent-2);">4.1%</span></div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Meetings</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">11</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">3.8%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Actionable</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color:var(--accent-2);">1.5%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Conversations</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">6</span></div>
             </div>
           </div>
           <div class="card">
-            <div class="card-title">Campaign Performance · C3 Nurture</div>
-            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">2,152 leads · 4-touch · light cadence</div>
+            <div class="card-title">C3 Nurture · Light</div>
+            <div style="font-size:11px; color:var(--text-mute); margin-bottom:12px;">1,300 targets · 4-touch</div>
             <div style="display:flex; flex-direction:column; gap:8px;">
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Open Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">41.6%</span></div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color:var(--accent-3);">2.7%</span></div>
-              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Meetings</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">3</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Reply Rate</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">2.1%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Actionable</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600; color:var(--accent-3);">0.6%</span></div>
+              <div style="display:flex; justify-content:space-between; font-size:12px;"><span style="color:var(--text-mute);">Conversations</span><span style="font-family:'JetBrains Mono', monospace; font-weight:600;">1</span></div>
             </div>
           </div>
         </div>
@@ -2196,15 +2146,15 @@ const PAGES = {
       reports: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <div><strong>Weekly report</strong> every Monday — branded PDF + Loom on send health, replies, and pipeline.</div>
+          <div><strong>Weekly sourcing report</strong> — send health, actionable replies, conversations, and next-cohort decisions. Not vanity open rates.</div>
         </div>
 
         <div class="report-mock fade-in d1">
           <div class="report-head">
             <div>
-              <div style="font-size:11px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:4px;">Weekly Performance Report</div>
-              <div style="font-size:18px; font-weight:700;">Acme Co · Week of May 12 – May 18</div>
-              <div style="font-size:11px; color:var(--text-mute); margin-top:4px;">Prepared by AptAI Systems · Avi Raju</div>
+              <div style="font-size:11px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:4px;">Weekly Origination Report</div>
+              <div style="font-size:18px; font-weight:700;">Acquirer Co · Week of May 12 – May 18</div>
+              <div style="font-size:11px; color:var(--text-mute); margin-top:4px;">Prepared by AptAI Systems · Proprietary Deal Origination</div>
             </div>
             <div style="text-align:right;">
               <button class="btn">Download PDF</button>
@@ -2212,20 +2162,20 @@ const PAGES = {
           </div>
 
           <div class="report-stats">
-            <div class="report-stat"><div class="label">Emails Sent</div><div class="value">38,420</div></div>
-            <div class="report-stat"><div class="label">Reply Rate</div><div class="value" style="color: var(--accent-dark);">4.8%</div></div>
-            <div class="report-stat"><div class="label">Hot Replies</div><div class="value">47</div></div>
-            <div class="report-stat"><div class="label">Meetings</div><div class="value" style="color:var(--accent-2);">28</div></div>
+            <div class="report-stat"><div class="label">Emails Sent</div><div class="value">24,180</div></div>
+            <div class="report-stat"><div class="label">Actionable</div><div class="value" style="color: var(--accent-dark);">31</div></div>
+            <div class="report-stat"><div class="label">Conversations</div><div class="value">18</div></div>
+            <div class="report-stat"><div class="label">Briefs Sent</div><div class="value" style="color:var(--accent-2);">22</div></div>
           </div>
 
           <div style="border-top:1px solid var(--border); padding-top:16px;">
             <div style="font-size:12px; color:var(--text-mute); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:10px;">Highlights</div>
             <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
               ${[
-                ['✓','C1 (founder send) outperformed forecast by +1.7pp reply rate'],
-                ['✓','Variant B subject line auto-promoted — captured the top 60% of cohort traffic'],
-                ['◉','acmehq.co domain reputation dropped 3 points — throttled and rotated'],
-                ['→','Next week: expand T2 by 800 leads from new vertical (e-commerce platforms)']
+                ['✓','Successor-operator voice outperformed generic capital language on T1'],
+                ['✓','Ownership Fit brief accepted on 71% of actionable replies'],
+                ['◉','One domain throttled — reserve stack absorbed volume'],
+                ['→','Next week: expand T2 in specialty manufacturing cohort']
               ].map(([i,t]) => `
                 <li style="display:flex; gap:10px; font-size:13px;">
                   <span style="color: var(--accent-dark); font-weight:700; font-family:'JetBrains Mono', monospace;">${i}</span>
@@ -2238,112 +2188,109 @@ const PAGES = {
 
         <div class="grid grid-3 fade-in d2" style="margin-top:24px;">
           <div class="card">
-            <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            <div class="card-title">Pipeline Impact</div>
-            <div class="stat" style="font-size:24px;">$940K</div>
-            <p style="font-size:11px; color:var(--text-mute);">Open pipeline sourced from outbound, 7d trailing</p>
+            <div class="card-title">Conversations (7d)</div>
+            <div class="stat" style="font-size:24px;">18</div>
+            <p style="font-size:11px; color:var(--text-mute);">Calls · mgmt meetings · NDA paths</p>
           </div>
           <div class="card">
-            <div class="card-icon" style="background:rgba(4,86,96,0.1); color:var(--accent-2);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div>
-            <div class="card-title">Cost per Meeting</div>
-            <div class="stat" style="font-size:24px; color:var(--accent-2);">$284</div>
-            <p style="font-size:11px; color:var(--text-mute);">All-in: infrastructure + AI + ops</p>
+            <div class="card-title">Cost per Conversation</div>
+            <div class="stat" style="font-size:24px; color:var(--accent-2);">$410</div>
+            <p style="font-size:11px; color:var(--text-mute);">All-in: infra + AI + ops</p>
           </div>
           <div class="card">
-            <div class="card-icon" style="background:rgba(110,106,99,0.1); color:var(--accent-3);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
-            <div class="card-title">SDR Equivalent</div>
-            <div class="stat" style="font-size:24px; color:var(--accent-3);">≈ 4.2x</div>
-            <p style="font-size:11px; color:var(--text-mute);">Meetings vs. typical 1-SDR output</p>
+            <div class="card-title">Channel status</div>
+            <div class="stat" style="font-size:24px; color:var(--accent-3);">Durable</div>
+            <p style="font-size:11px; color:var(--text-mute);">Not one-off campaign activity</p>
           </div>
         </div>
       `,
       iterate: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15A9 9 0 0 1 5.64 18.36L1 14"/></svg>
-          <div><strong>Subjects, openers, and cadence</strong> tested in parallel. Winners auto-promote.</div>
+          <div><strong>Positioning, approach assets, and cadence</strong> tested in parallel. Winners auto-promote toward message-market fit.</div>
         </div>
 
         <div class="grid grid-2 fade-in d1">
           <div class="ab-card">
             <div class="ab-head">
-              <div class="ab-title">Subject Line · C2 Warm</div>
+              <div class="ab-title">Buyer Voice · T1 Hot</div>
               <span class="ab-status winner">WINNER · A</span>
             </div>
             <div class="ab-variant win">
               <div class="ab-variant-head">
-                <span class="ab-variant-label">Variant A</span><span class="ab-variant-rate">62.1% open · 4.8% reply</span>
+                <span class="ab-variant-label">A — Successor-operator</span><span class="ab-variant-rate">3.4% actionable</span>
               </div>
-              <div class="ab-variant-copy">"quick thought on {{company}}'s pipeline"</div>
+              <div class="ab-variant-copy">"we acquire and operate — not flip — businesses like yours…"</div>
             </div>
             <div class="ab-variant">
               <div class="ab-variant-head">
-                <span class="ab-variant-label">Variant B</span><span class="ab-variant-rate">48.4% open · 3.4% reply</span>
+                <span class="ab-variant-label">B — Capital-led PE</span><span class="ab-variant-rate">1.9% actionable</span>
               </div>
-              <div class="ab-variant-copy">"helping {{company}} hit Q3 targets"</div>
+              <div class="ab-variant-copy">"our fund is actively deploying in {{sector}}…"</div>
             </div>
           </div>
 
           <div class="ab-card">
             <div class="ab-head">
-              <div class="ab-title">Opener Hook · C1 Hot</div>
-              <span class="ab-status live">RUNNING · 7d</span>
-            </div>
-            <div class="ab-variant win">
-              <div class="ab-variant-head">
-                <span class="ab-variant-label">Variant A — Trigger-based</span><span class="ab-variant-rate">9.4% reply</span>
-              </div>
-              <div class="ab-variant-copy">"saw {{company}} just hired its first VP Sales — congrats…"</div>
-            </div>
-            <div class="ab-variant">
-              <div class="ab-variant-head">
-                <span class="ab-variant-label">Variant B — Pain-led</span><span class="ab-variant-rate">7.1% reply</span>
-              </div>
-              <div class="ab-variant-copy">"most {{vertical}} teams I talk to are stuck at top-of-funnel…"</div>
-            </div>
-          </div>
-
-          <div class="ab-card">
-            <div class="ab-head">
-              <div class="ab-title">CTA · All Campaigns</div>
-              <span class="ab-status live">RUNNING · 3d</span>
-            </div>
-            <div class="ab-variant">
-              <div class="ab-variant-head">
-                <span class="ab-variant-label">Variant A — Soft</span><span class="ab-variant-rate">4.1% reply</span>
-              </div>
-              <div class="ab-variant-copy">"worth a quick chat?"</div>
-            </div>
-            <div class="ab-variant win">
-              <div class="ab-variant-head">
-                <span class="ab-variant-label">Variant B — Direct</span><span class="ab-variant-rate">5.6% reply</span>
-              </div>
-              <div class="ab-variant-copy">"open to 15 min Thu or Fri?"</div>
-            </div>
-          </div>
-
-          <div class="ab-card">
-            <div class="ab-head">
-              <div class="ab-title">Cadence Spacing · C2 Warm</div>
+              <div class="ab-title">CTA · All Cadences</div>
               <span class="ab-status winner">WINNER · B</span>
             </div>
             <div class="ab-variant">
               <div class="ab-variant-head">
-                <span class="ab-variant-label">A — Tight (2d gap)</span><span class="ab-variant-rate">3.7% reply</span>
+                <span class="ab-variant-label">A — Calendar-first</span><span class="ab-variant-rate">1.2% actionable</span>
               </div>
-              <div class="ab-variant-copy">7 touches over 14 days</div>
+              <div class="ab-variant-copy">"open to 15 min this week?"</div>
             </div>
             <div class="ab-variant win">
               <div class="ab-variant-head">
-                <span class="ab-variant-label">B — Spaced (4d gap)</span><span class="ab-variant-rate">4.9% reply</span>
+                <span class="ab-variant-label">B — Permission for brief</span><span class="ab-variant-rate">2.6% actionable</span>
               </div>
-              <div class="ab-variant-copy">7 touches over 28 days</div>
+              <div class="ab-variant-copy">"Would it be useful if I sent that over?"</div>
+            </div>
+          </div>
+
+          <div class="ab-card">
+            <div class="ab-head">
+              <div class="ab-title">Approach Asset</div>
+              <span class="ab-status live">RUNNING · 10d</span>
+            </div>
+            <div class="ab-variant win">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">A — Ownership Fit Brief</span><span class="ab-variant-rate">71% accept</span>
+              </div>
+              <div class="ab-variant-copy">One-page confidential relevance · no valuation</div>
+            </div>
+            <div class="ab-variant">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">B — Indicative range</span><span class="ab-variant-rate">Rejected</span>
+              </div>
+              <div class="ab-variant-copy">Unsupportable from public data — reads as bait</div>
+            </div>
+          </div>
+
+          <div class="ab-card">
+            <div class="ab-head">
+              <div class="ab-title">Cadence Spacing · T2</div>
+              <span class="ab-status winner">WINNER · B</span>
+            </div>
+            <div class="ab-variant">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">A — Tight (2d)</span><span class="ab-variant-rate">1.1% actionable</span>
+              </div>
+              <div class="ab-variant-copy">7 touches / 14 days</div>
+            </div>
+            <div class="ab-variant win">
+              <div class="ab-variant-head">
+                <span class="ab-variant-label">B — Spaced (4d)</span><span class="ab-variant-rate">1.7% actionable</span>
+              </div>
+              <div class="ab-variant-copy">7 touches / 28 days — owner-appropriate pace</div>
             </div>
           </div>
         </div>
 
         <div class="info-strip fade-in d2" style="margin-top:24px; background: linear-gradient(90deg, rgba(110,106,99,0.06), transparent); border-color: rgba(110,106,99,0.15);">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent-3);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <div><strong>Compounding effect</strong> — by week 8, reply rates land 40–60% above the week-2 baseline.</div>
+          <div><strong>Compounding effect</strong> — by week 8, actionable rates typically sit 40–60% above the week-2 baseline when experiments are real.</div>
         </div>
       `
     }
@@ -2352,7 +2299,7 @@ const PAGES = {
   sprint: {
     crumb: ['Months 1–3', 'Validation Sprint', '3-Month Plan'],
     title: '3-Month Validation Sprint',
-    desc: 'Clients give us three months. We can surface results in week one — and we use the full sprint to find message-market fit, then scale it.',
+    desc: 'Clients give us three months. Early conversations can appear in week one — the sprint finds message-market fit for proprietary origination, then scales it.',
     pill: 'Phase 06 / Validation Sprint',
     pillColor: 'var(--accent)',
     subtabs: [
@@ -2364,63 +2311,63 @@ const PAGES = {
       m1: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          <div><strong>Why three months?</strong> Week 0–4 installs the engine and can book real meetings in the first week. The sprint is how we turn early signal into a durable revenue channel — not a one-off burst.</div>
+          <div><strong>Why three months?</strong> Week 0–4 installs the origination engine and can surface real owner conversations in the first week. The sprint turns early signal into a durable proprietary channel — not a one-week stunt.</div>
         </div>
 
         <div class="grid grid-3 fade-in d1" style="margin-top:8px;">
           <div class="month-card">
             <div class="month-num">Month 01 · Weeks 1–4</div>
             <div class="month-title">Install the full engine</div>
-            <p class="month-body">Everything you just walked: TAM → ICP → infrastructure → launch → analytics. Live sends. Real replies. Often first meetings inside 7 days.</p>
+            <p class="month-body">Market map → investment criteria → infrastructure → sourcing cadence → analytics. Live coverage. Real replies. Often first conversations inside 7 days.</p>
             <ul class="month-list">
-              <li>Foundation + activation complete</li>
-              <li>Pre-flight, ramp, reply routing live</li>
-              <li>Outsized early returns when the list is tight</li>
-              <li>Baseline metrics for Month 2 experiments</li>
+              <li>Foundation + coverage live</li>
+              <li>Approach asset + reply routing on</li>
+              <li>Outsized early signal when the map is tight</li>
+              <li>Baseline for Month 2 experiments</li>
             </ul>
           </div>
           <div class="month-card">
             <div class="month-num">Commitment</div>
             <div class="month-title">Not a silver bullet week</div>
-            <p class="month-body">Cold outbound compounds. We ask for three months so learning has room — while still delivering visible pipeline early.</p>
+            <p class="month-body">Proprietary origination compounds. We ask for three months so learning has room — while still delivering visible conversations early.</p>
             <ul class="month-list">
-              <li>Week-1 results prove the system works</li>
+              <li>Week-1 results prove the install</li>
               <li>Month-1 data feeds the experiment backlog</li>
               <li>No "set and forget" — operators stay on it</li>
             </ul>
           </div>
           <div class="month-card">
             <div class="month-num">Output</div>
-            <div class="month-title">Signal, not just volume</div>
-            <p class="month-body">Which segments reply. Which openers land. Which CTAs book. What bounces or dies. That becomes Month 2's map.</p>
+            <div class="month-title">Signal, not just activity</div>
+            <p class="month-body">Which sectors reply. Which buyer voice lands. Which CTAs earn brief accepts. What gets ignored. That becomes Month 2's map.</p>
             <ul class="month-list">
-              <li>Segment × message performance table</li>
-              <li>Reply taxonomy (interested / OOF / objection)</li>
-              <li>Infrastructure health under real load</li>
+              <li>Sector × message performance</li>
+              <li>Reply taxonomy (owner / broker / pass)</li>
+              <li>Infrastructure health under load</li>
             </ul>
           </div>
         </div>
 
         <div class="mmf-callout fade-in d2">
-          <h3>North star of the whole circus: message-market fit</h3>
-          <p>Message-market fit is the proven pairing of <strong>who + what + when</strong> that reliably produces qualified conversations. Month 1 starts the hunt. Month 2 isolates the spark. Month 3 is when we earn the right to put serious volume behind it. More mailboxes without MMF only multiplies noise.</p>
+          <h3>North star: message-market fit (origination edition)</h3>
+          <p>Message-market fit is the proven pairing of <strong>who (mandate-fit targets) + what (buyer voice &amp; approach asset) + when (cadence)</strong> that reliably produces confidential owner conversations. Month 1 starts the hunt. Month 2 isolates the spark. Month 3 is when we earn the right to put serious volume behind it. More mailboxes without MMF only multiplies noise — and damages reputation PE buyers cannot afford.</p>
         </div>
       `,
       m2: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/><path d="M20.49 15A9 9 0 0 1 5.64 18.36L1 14"/></svg>
-          <div><strong>Month 2 is for iteration.</strong> Whatever works, we double down. Whatever doesn't, we kill or redesign. This is where most of the learning — and the spark — shows up.</div>
+          <div><strong>Month 2 is for iteration.</strong> Double down on winner sectors and voices. Kill what embarrasses the brand. Warm extra domains for Month 3 scale.</div>
         </div>
 
         <div class="grid grid-2 fade-in d1">
           <div class="card">
             <h3 style="font-size:15px; margin-bottom:8px;">Double down vs. kill</h3>
-            <p style="font-size:12px; color:var(--text-mute); margin-bottom:14px;">Weekly experiment board. Winners get traffic. Losers get retired with a written lesson.</p>
+            <p style="font-size:12px; color:var(--text-mute); margin-bottom:14px;">Weekly experiment board. Winners get coverage. Losers get a written lesson.</p>
             <div style="display:flex; flex-direction:column; gap:10px;">
               ${[
-                ['Winners', 'Promote subject/opener/CTA to majority traffic', 'var(--success-dark)'],
-                ['Experiments', 'New segments, offers, cadence spacing, personalization depth', 'var(--accent-2)'],
-                ['Losers', 'Pause, diagnose, or scrap — no ego holds', 'var(--danger)']
+                ['Winners', 'Promote voice / CTA / sector package to majority traffic', 'var(--success-dark)'],
+                ['Experiments', 'New sectors, approach-asset angles, cadence spacing, LinkedIn assist', 'var(--accent-2)'],
+                ['Losers', 'Pause generic PE language, valuation bait, burned domains', 'var(--danger)']
               ].map(([t,d,c]) => `
                 <div style="display:flex; gap:12px; align-items:flex-start; padding:12px; border:1px solid var(--border); border-radius:10px;">
                   <div style="width:8px;height:8px;border-radius:50%;background:${c};margin-top:5px;flex-shrink:0;"></div>
@@ -2431,74 +2378,70 @@ const PAGES = {
           </div>
           <div class="card">
             <h3 style="font-size:15px; margin-bottom:8px;">Warm capacity for Month 3</h3>
-            <p style="font-size:12px; color:var(--text-mute); margin-bottom:14px;">Once MMF shows up, we want volume ready — not starting domain warmup the day we decide to scale.</p>
+            <p style="font-size:12px; color:var(--text-mute); margin-bottom:14px;">Once MMF shows up, volume must already be warming — not started the day we decide to scale proprietary coverage.</p>
             <ul class="month-list">
-              <li>Purchase additional domains & mailboxes mid-sprint</li>
-              <li>Warm and thermalize while Month 2 experiments run</li>
-              <li>Stage for a clean Month 3 ramp behind the winning message</li>
-              <li>Protect primary domains — never burn reputation to "go faster"</li>
+              <li>Purchase additional domains &amp; mailboxes mid-sprint</li>
+              <li>Warm while Month 2 experiments run</li>
+              <li>Stage for clean Month 3 ramp behind the winning package</li>
+              <li>Never burn primary firm domain to "go faster"</li>
             </ul>
-            <div class="kpi-row" style="margin-top:18px; grid-template-columns:1fr 1fr;">
-              <div class="kpi"><div class="kpi-label">Experiment velocity</div><div class="kpi-val" style="font-size:22px;">6–10</div><div class="kpi-foot">tests / month typical</div></div>
-              <div class="kpi b2"><div class="kpi-label">Infra prep</div><div class="kpi-val" style="font-size:22px;">+domains</div><div class="kpi-foot">warming for M3 scale</div></div>
-            </div>
           </div>
         </div>
 
         <div class="info-strip fade-in d2" style="margin-top:24px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-          <div><strong>The spark.</strong> With enough clean experiments and operator experience, message-market fit usually surfaces between late Month 2 and early Month 3. That spark is the entire point of the sprint.</div>
+          <div><strong>The spark.</strong> With clean experiments and operator experience, message-market fit usually surfaces between late Month 2 and early Month 3. That spark is the entire point of the sprint.</div>
         </div>
       `,
       m3: () => `
         <div class="info-strip fade-in">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-          <div><strong>Month 3: message-market fit → scale.</strong> Take the winning campaign and put 3× volume behind it. New variants appear under load; the pipeline stays steady after the spike.</div>
+          <div><strong>Month 3: message-market fit → scale.</strong> Take the winning sourcing package and put ~3× volume behind it. Keep a steady conversation engine after the spike.</div>
         </div>
 
         <div class="grid grid-3 fade-in d1">
           <div class="month-card">
             <div class="month-num">Step 01</div>
             <div class="month-title">Lock the winning package</div>
-            <p class="month-body">Segment + offer + subject + opener + CTA + cadence that earned MMF. Document it so the team can repeat it.</p>
+            <p class="month-body">Sector + buyer voice + approach asset + CTA + cadence that earned MMF. Document so the deal team can internalize it.</p>
             <ul class="month-list">
               <li>Who it works on (and who it doesn't)</li>
-              <li>Proof lines and risk language that convert</li>
-              <li>Reply handling playbook for this angle</li>
+              <li>Language that earns confidential replies</li>
+              <li>Reply → call → NDA playbook</li>
             </ul>
           </div>
           <div class="month-card">
             <div class="month-num">Step 02</div>
             <div class="month-title">3× volume behind MMF</div>
-            <p class="month-body">Deploy warmed Month-2 infrastructure. Ramp daily sends behind the proven message — not every message.</p>
+            <p class="month-body">Deploy warmed Month-2 infrastructure. Expand only inside the mandate-fit envelope.</p>
             <ul class="month-list">
-              <li>Expand list only inside the fit envelope</li>
-              <li>Watch bounce, spam, and reply quality weekly</li>
-              <li>Throttle if reputation dips — volume is not vanity</li>
+              <li>Scale coverage on the proven package</li>
+              <li>Watch bounce, spam, actionable quality weekly</li>
+              <li>Throttle if reputation dips</li>
             </ul>
           </div>
           <div class="month-card">
             <div class="month-num">Step 03</div>
-            <div class="month-title">Steady pipeline after the peak</div>
-            <p class="month-body">Scale produces new variants and fatigue. Keep a baseline cadence generating leads even as the first wave cools.</p>
+            <div class="month-title">Steady proprietary pipeline</div>
+            <p class="month-body">Scale produces fatigue and new variants. Keep a baseline cadence generating owner conversations after the first wave cools.</p>
             <ul class="month-list">
               <li>Refresh creatives without abandoning MMF</li>
-              <li>Open adjacent segments carefully</li>
-              <li>Hand off a system the client can keep running</li>
+              <li>Open adjacent sectors carefully</li>
+              <li>Hand off a system the firm can run in-house</li>
             </ul>
           </div>
         </div>
 
         <div class="mmf-callout fade-in d2">
           <h3>Why this is the whole point</h3>
-          <p>Without message-market fit, Month 3 is just expensive noise. With it, every additional domain and mailbox multiplies qualified conversations. That is what three months buys you: not a longer project — a <em>right</em> to scale.</p>
+          <p>Without message-market fit, Month 3 is expensive noise and reputation risk. With it, every additional domain multiplies confidential conversations with mandate-fit owners. Three months buys the <em>right</em> to scale proprietary origination — not a longer vanity project.</p>
         </div>
 
         <div class="grid grid-4 fade-in d2" style="margin-top:24px;">
           <div class="card"><div class="stat-label">MMF found</div><div class="stat" style="color:var(--accent-dark); font-size:22px;">M2–M3</div><div class="stat-trend up">Typical window</div></div>
           <div class="card"><div class="stat-label">Scale factor</div><div class="stat" style="color:var(--accent-2); font-size:22px;">~3×</div><div class="stat-trend up">Volume on winner</div></div>
           <div class="card"><div class="stat-label">Infra prep</div><div class="stat" style="color:var(--accent-3); font-size:22px;">M2 warm</div><div class="stat-trend up">Ready for M3 ramp</div></div>
-          <div class="card"><div class="stat-label">Outcome</div><div class="stat" style="color:var(--success-dark); font-size:22px;">Pipeline</div><div class="stat-trend up">Steady after spike</div></div>
+          <div class="card"><div class="stat-label">Outcome</div><div class="stat" style="color:var(--success-dark); font-size:22px;">Deal flow</div><div class="stat-trend up">Steady after spike</div></div>
         </div>
       `
     }
@@ -2507,58 +2450,64 @@ const PAGES = {
   cases: {
     crumb: ['Months 1–3', 'Validation Sprint', 'Case Studies'],
     title: 'Case Studies',
-    desc: 'Proof the engine works — early signal, iteration, and outcomes clients actually care about.',
+    desc: 'Proof proprietary origination works — operator-led acquirers and permanent-hold platforms.',
     pill: 'Phase 07 / Proof',
     pillColor: 'var(--accent-dark)',
     render: () => `
       <div class="info-strip fade-in">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        <div><strong>Same process, different markets.</strong> Revenue-gen clients get pipeline. Acquisition clients get proprietary conversations. The spine is identical: fit → infrastructure → cadence → iterate → message-market fit → scale.</div>
+        <div><strong>Not lead gen.</strong> Done-for-you proprietary origination: direct owner conversations, protected reputation, thesis turned into coverage — eventually a system the firm can run.</div>
       </div>
 
       <div class="grid grid-3 fade-in d1">
         <div class="case-card">
-          <span class="case-tag">B2B SaaS · Revenue</span>
-          <div class="case-name">Series B GTM team</div>
-          <div class="case-role">VP Sales · stalled top-of-funnel · paid CAC rising</div>
-          <p style="font-size:12px; color:var(--text-mute); line-height:1.5;">Needed predictable pipeline without burning domains. Installed multi-stack infra, tiered ICP, founder-touch T1 + automated T2.</p>
-          <div class="case-metrics">
-            <div class="case-metric"><div class="v">4.8%</div><div class="l">Reply rate</div></div>
-            <div class="case-metric"><div class="v">28</div><div class="l">Meetings / mo</div></div>
-            <div class="case-metric"><div class="v">$284</div><div class="l">Cost / meeting</div></div>
-          </div>
-          <div class="case-lesson"><strong>Lesson:</strong> Early week-1 meetings proved the install; Month 2 subject tests lifted reply +1.4pp before Month 3 scale.</div>
-        </div>
-
-        <div class="case-card">
-          <span class="case-tag">Agency · New logo</span>
-          <div class="case-name">Growth agency founder</div>
-          <div class="case-role">Need predictable new-logo flow · service line expansion</div>
-          <p style="font-size:12px; color:var(--text-mute); line-height:1.5;">List was wide and noisy. Tightened firmographics, signal tiers, and offer (audit-style front end) until one vertical converted.</p>
-          <div class="case-metrics">
-            <div class="case-metric"><div class="v">3.1×</div><div class="l">M3 volume</div></div>
-            <div class="case-metric"><div class="v">12</div><div class="l">SQL / mo</div></div>
-            <div class="case-metric"><div class="v">M2</div><div class="l">MMF found</div></div>
-          </div>
-          <div class="case-lesson"><strong>Lesson:</strong> Message-market fit beat list size. Once one vertical clicked, Month 3 was volume — not more guessing.</div>
-        </div>
-
-        <div class="case-card">
-          <span class="case-tag">Cross-proof · Acquisition</span>
-          <div class="case-name">Operator-led acquirer</div>
-          <div class="case-role">Proprietary deal sourcing · successor-operator positioning</div>
-          <p style="font-size:12px; color:var(--text-mute); line-height:1.5;">Same engine, origination language. Direct owner conversations instead of broker-only flow. Full story lives in the Deal Origination demo.</p>
+          <span class="case-tag">Operator-led · Named proof</span>
+          <div class="case-name">Apala Capital</div>
+          <div class="case-role">Search / partner-equity · successor-operator positioning</div>
+          <p style="font-size:12px; color:var(--text-mute); line-height:1.5;">Owners distrusted generic PE framing. Broker-only flow was insufficient. Wedge: operational likeness — credible successor-operator, not financial-buyer language.</p>
           <div class="case-metrics">
             <div class="case-metric"><div class="v">23</div><div class="l">Opportunities</div></div>
             <div class="case-metric"><div class="v">20</div><div class="l">Booked calls</div></div>
             <div class="case-metric"><div class="v">3</div><div class="l">Diligence</div></div>
           </div>
-          <div class="case-lesson"><strong>Lesson:</strong> Operational likeness beat generic "PE interest." Switch demos → <a href="./pe/" style="color:var(--accent-dark); font-weight:600;">Deal Origination</a>.</div>
+          <div class="case-lesson"><strong>Lesson:</strong> ~11k emails. Operational likeness beat capital-led messaging. Same engine as revenue-gen — origination nouns and buyer voice.</div>
+        </div>
+
+        <div class="case-card">
+          <span class="case-tag">Permanent-hold · Composite</span>
+          <div class="case-name">Platform origination lead</div>
+          <div class="case-role">Long-hold acquirer · accountable for proprietary channel</div>
+          <p style="font-size:12px; color:var(--text-mute); line-height:1.5;">Embarrassed by duct-tape execution. Good internal data; weak replies; risk of burning primary domain. Needed the channel to stop leaking — not more raw leads.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="v">Week 1</div><div class="l">First signal</div></div>
+            <div class="case-metric"><div class="v">CRM</div><div class="l">Synced opps</div></div>
+            <div class="case-metric"><div class="v">Infra</div><div class="l">Domains fixed</div></div>
+          </div>
+          <div class="case-lesson"><strong>Lesson:</strong> Deliverability + segmentation + approach asset + reply triage. Composite anonymized from live engagement — not a named public case study.</div>
+        </div>
+
+        <div class="case-card">
+          <span class="case-tag">Cross-proof · Revenue gen</span>
+          <div class="case-name">B2B SaaS GTM teams</div>
+          <div class="case-role">Same spine · different nouns</div>
+          <p style="font-size:12px; color:var(--text-mute); line-height:1.5;">When the prospect is buying pipeline for a product (not companies), we run the Revenue Gen demo — identical process, SaaS vocabulary.</p>
+          <div class="case-metrics">
+            <div class="case-metric"><div class="v">4.8%</div><div class="l">Reply rate</div></div>
+            <div class="case-metric"><div class="v">28</div><div class="l">Meetings</div></div>
+            <div class="case-metric"><div class="v">M2–3</div><div class="l">MMF</div></div>
+          </div>
+          <div class="case-lesson"><strong>Switch demos:</strong> <a href="../" style="color:var(--accent-dark); font-weight:600;">Revenue Gen</a> for B2B tech. Stay here for PE / M&amp;A / deal sourcing.</div>
         </div>
       </div>
+
+      <div class="mmf-callout fade-in d2" style="margin-top:8px;">
+        <h3>Opening pitch (use on Loom / call)</h3>
+        <p>We build proprietary deal origination engines for long-hold acquirers and operator-led search funds. Market map → investment criteria → mandate-fit targets not already in a competing process → approach asset that earns a real reply → call, management meeting, NDA. Then three months to find message-market fit and scale it.</p>
+      </div>
     `
-  },
+  }
 };
+
 
 // ====== ROUTING / STATE ======
 const state = {
@@ -2607,7 +2556,7 @@ function render() {
   html += `
     <div class="footer-note">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      <div>Live view of the AptAI cold outbound engine — through message-market fit and scale. Click any phase on the left to keep walking through.</div>
+      <div>Live view of the AptAI proprietary deal origination engine — market map through message-market fit and scale. Click any phase to keep walking through.</div>
     </div>
   `;
 

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/PE", "destination": "/pe/index.html" },
+    { "source": "/PE/", "destination": "/pe/index.html" },
+    { "source": "/pe", "destination": "/pe/index.html" },
+    { "source": "/pe/", "destination": "/pe/index.html" }
+  ]
+}
