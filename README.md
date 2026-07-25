@@ -35,4 +35,13 @@ Static on Vercel. `vercel.json` rewrites `/PE` → `pe/index.html`.
 - [PLAN.md](PLAN.md) — dual-demo product plan  
 - [AGENTS.md](AGENTS.md) — architecture + edit rules  
 - [CLAUDE.md](CLAUDE.md) — working playbook  
-- [GROK.md](GROK.md) → [agents/Grok.md](agents/Grok.md)  
+- [GROK.md](GROK.md) → [agents/Grok.md](agents/Grok.md)
+
+## Scripts
+
+2-minute walkthrough scripts (SaaS + PE): [`sales-demo-scripts.md`](sales-demo-scripts.md)
+
+## Case study assets
+
+Screenshots and logos live in [`Case-Studies/`](Case-Studies/) (mirrored under `pe/Case-Studies/` for the PE page paths).
+
