@@ -37,9 +37,10 @@ Static on Vercel. `vercel.json` rewrites `/PE` → `pe/index.html`.
 - [CLAUDE.md](CLAUDE.md) — working playbook  
 - [GROK.md](GROK.md) → [agents/Grok.md](agents/Grok.md)
 
-## Scripts
+## Scripts & messaging
 
-2-minute walkthrough scripts (SaaS + PE): [`sales-demo-scripts.md`](sales-demo-scripts.md)
+- 2-minute walkthrough scripts (SaaS + PE): [`sales-demo-scripts.md`](sales-demo-scripts.md)
+- **Verbiage by vertical** (TAM vs Market Map, campaign vs cadence, full swap tables): [`MESSAGING-BY-VERTICAL.md`](MESSAGING-BY-VERTICAL.md)
 
 ## Case study assets
 

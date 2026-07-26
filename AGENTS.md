@@ -29,6 +29,8 @@ No backend, no build. Demo numbers are illustrative; sidebar ESP cost math match
 | `pe/index.html` | PE Origination demo (1:1 structure, different nouns/story) |
 | `vercel.json` | `/PE` → `pe/index.html` |
 | `PLAN.md` | Product plan, vocabulary swap, 3-month thesis |
+| `MESSAGING-BY-VERTICAL.md` | Full B2B vs PE verbiage bible (say this / not that) |
+| `sales-demo-scripts.md` | 2-min Loom/walkthrough scripts |
 | `AGENTS.md` | This file |
 | `CLAUDE.md` | Working playbook |
 | `GROK.md` / `agents/Grok.md` | Grok entrypoint |
