@@ -355,19 +355,33 @@ Full scripts: [`sales-demo-scripts.md`](sales-demo-scripts.md).
 
 ---
 
-## 9. Personas (who you’re talking *to* vs who you *target*)
+## 9. Two layers of “persona” (do not mix)
 
-### B2B — buyer on the sales call (your client)
-- VP Sales / Head of GTM, Head of Demand Gen, Agency founder — they buy **pipeline**.
+This is the most common PE messaging mistake.
 
-### PE — buyer on the sales call (your client)
-- **Operator-led acquirer** — needs credibility as successor-operator; proof: Apala arc.
-- **Platform origination lead** — needs channel reliability, deliverability, execution; proof: Permanent Corp week-1 arc.
+| Layer | Who | Role in the motion |
+|-------|-----|--------------------|
+| **A. AptAI client** | PE firm, search fund, permanent-hold acquirer, M&A / origination lead | **Buys AptAI.** Demo is *for them*. Case studies name them (Apala, Permanent Corp). |
+| **B. Outreach persona / list** | **Business owners** of mandate-fit operating companies (“portco-style” sellers) | **People we email/LinkedIn on the client’s behalf.** Seller leads who may sell, merge, or partner. |
 
-### PE — people on the *list* (not your client)
-- Owners, founders, CEOs, managing directors of **target companies** (sell / merge / partner paths).
+### B2B Tech (for comparison)
+- Client on the call: VP Sales / Demand Gen / agency founder → buys **pipeline**.
+- List personas: their ideal *customers* (e.g. CRO, CMO at target accounts).
 
-Never confuse “ICP” of the PE firm’s *customer* with investment criteria for *targets*.
+### PE — what the demo must show
+- **Investment criteria** = the **fund’s** filters (check size, sector, ownership, not in process).
+- **Personas on the “persona” tab** = **sellers / owners**, not PE professionals.
+  - Founder-owner (succession / fatigue)
+  - Family / multi-gen owner (liquidity / estate)
+  - Operator-seller (capacity ceiling / partner exit)
+- Messaging, approach assets, and A/B tests are written **to owners**, not to “Head of Origination.”
+- We still **sell the engagement to PE/M&A** (“we get you proprietary seller conversations”).
+
+### Say this
+> “You [PE firm] are our client. The list is **owners of companies that fit your mandate** — seller leads, not other investors.”
+
+### Not this
+> Persona cards titled “Platform Origination Lead” / “Operator-Led Acquirer” as if *they* are who cold outbound is written to.
 
 ---
 
